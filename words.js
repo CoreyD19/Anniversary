@@ -1,0 +1,4 @@
+const words = [
+  "lewiscapaldi", "tela", "clearwater", "petedavidson", "minecraft",
+  "destin", "annakeesta", "bigtimerush", "hamilton", "yellow"
+];
