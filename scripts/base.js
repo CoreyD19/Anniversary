@@ -1,0 +1,28 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.fact-card');
+  cards.forEach((card, i) => {
+    card.style.opacity = 0;
+    card.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      card.style.opacity = 1;
+      card.style.transform = 'translateY(0)';
+    }, i * 200);
+  });
+});
+
+// Achievement tracking helper
+function markAchievementComplete(year) {
+  let achievements = JSON.parse(localStorage.getItem('loveAchievements')) || [];
+  if (!achievements.includes(year)) {
+    achievements.push(year);
+    localStorage.setItem('loveAchievements', JSON.stringify(achievements));
+
+    // If 7 out of 7 are complete, open surprise
+    if (achievements.length === 7) {
+      setTimeout(() => {
+        window.open('secret.html', '_blank');
+      }, 500);
+    }
+  }
+}

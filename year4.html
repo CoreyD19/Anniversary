@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Year 4 - Our Journey</title>
+  <link rel="stylesheet" href="styles/year4.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="year1.html">Year 1</a>
+    <a href="year2.html">Year 2</a>
+    <a href="year3.html">Year 3</a>
+    <a class="active" href="year4.html">Year 4</a>
+    <a href="year5.html">Year 5</a>
+    <a href="year6.html">Year 6</a>
+    <a href="year7.html">Year 7</a>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Year 4 - Building Our Dreams (2021-2022)</h1>
+    </header>
+
+    <section class="summary">
+      <h2>Year 4:</h2>
+      <p>
+        This year was about building — our dreams, our careers, and our future together. 
+        Through every challenge and every triumph, we stood side by side, creating something beautiful. 
+        Every smile, every hug, and every cozy night reminded us how strong our love has grown. 💑🏡
+      </p>
+    </section>
+
+    <section class="photo-gallery">
+      <h3>Memories</h3>
+      <div class="gallery">
+        <div class="photo">
+          <img src="images/year4/1.jpg" alt="Photo 1">
+          <p class="photo-date">September 6, 2021</p>
+          <label><input type="radio" name="puzzleChoice" value="images/year4/1.jpg"> Use as Puzzle</label>
+        </div>
+        <div class="photo">
+          <img src="images/year4/2.jpg" alt="Photo 2">
+          <p class="photo-date">October 2, 2021</p>
+          <label><input type="radio" name="puzzleChoice" value="images/year4/2.jpg"> Use as Puzzle</label>
+        </div>
+        <div class="photo">
+          <img src="images/year4/3.jpg" alt="Photo 3">
+          <p class="photo-date">October 31, 2021</p>
+          <label><input type="radio" name="puzzleChoice" value="images/year4/3.jpg"> Use as Puzzle</label>
+        </div>
+        <div class="photo">
+          <img src="images/year4/4.jpg" alt="Photo 4">
+          <p class="photo-date">November 25, 2021</p>
+          <label><input type="radio" name="puzzleChoice" value="images/year4/4.jpg"> Use as Puzzle</label>
+        </div>
+        <div class="photo">
+          <img src="images/year4/5.jpg" alt="Photo 5">
+          <p class="photo-date">February 14, 2022</p>
+          <label><input type="radio" name="puzzleChoice" value="images/year4/5.jpg"> Use as Puzzle</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="puzzle-section">
+      <h2>🧩 Love Puzzle</h2>
+      <p>Choose one of the photos above to be turned into a puzzle! Complete it to earn the Year 4 achievement ✨</p>
+
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <button id="generatePuzzleBtn">Generate Puzzle</button>
+      </div>
+
+      <div id="puzzle-container" class="puzzle-grid"></div>
+      <p id="puzzle-result"></p>
+    </section>
+
+    <footer>
+      <p>Our love is the sweetest puzzle — every moment a perfect piece, and you’re the one that completes me. 🧩❤️ - Corey</p>
+    </footer>
+  </div>
+
+ <script src="scripts/puzzle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</body>
+</html>

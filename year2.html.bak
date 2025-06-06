@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Year 2 — Aliyana & Corey</title>
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/year2.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="year1.html">Year 1</a>
+    <a href="year2.html" class="active">Year 2</a>
+    <a href="year3.html">Year 3</a>
+    <a href="year4.html">Year 4</a>
+    <a href="year5.html">Year 5</a>
+    <a href="year6.html">Year 6</a>
+    <a href="year7.html">Year 7</a>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Year 2: Growing Closer ❤️ (2019–2020)</h1>
+    </header>
+
+    <section class="summary">
+      <h2>Year 2:</h2>
+      <p>
+        In our second year, the love deepened. From spontaneous dates to quiet evenings in, every moment brought us closer. 
+        We found comfort in routine and magic in the everyday. This year taught us how love can grow not just through grand 
+        gestures, but in the little things — the late-night conversations, the inside jokes, the support through challenges. 
+        Here's to the foundation we built.
+      </p>
+    </section>
+
+    <section class="memory-match">
+      <h2>🧠 Memory Match Game</h2>
+      <p>Click any two cards to flip and find matching memories from our second year together!</p>
+      <div class="game-board">
+        <!-- 10 images × 2 = 20 cards -->
+        <div class="card" data-name="img1">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/1.JPG" alt="July 4, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img1">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/1.JPG" alt="July 4, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img2">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/2.JPG" alt="July 27, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img2">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/2.JPG" alt="July 27, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img3">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/3.JPG" alt="September 1, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img3">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/3.JPG" alt="September 1, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img4">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/img4.JPG" alt="October 4, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img4">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/img4.JPG" alt="October 4, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img5">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/5.PNG" alt="October 5, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img5">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/5.PNG" alt="October 5, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img6">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/6.JPG" alt="October 11, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img6">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/6.JPG" alt="October 11, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img7">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/7.JPG" alt="October 12, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img7">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/7.JPG" alt="October 12, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img8">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/8.HEIC" alt="December 6, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img8">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/8.HEIC" alt="December 6, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img9">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/9.HEIC" alt="December 20, 2019"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img9">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/9.HEIC" alt="December 20, 2019"></div>
+          </div>
+        </div>
+
+        <div class="card" data-name="img10">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/10.PNG" alt="March 6, 2020"></div>
+          </div>
+        </div>
+        <div class="card" data-name="img10">
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back"><img src="images/year2/10.PNG" alt="March 6, 2020"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>I want to remember every day I have with you — Corey <span style="color: red;">❤️</span></p>
+    </footer>
+  </div>
+
+  <script src="scripts/memory-game.js"></script>
+   <script src="scripts/base.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Year 1 — Aliyana & Corey</title>
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/year1.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="year1.html">Year 1</a>
+    <a href="year2.html">Year 2</a>
+    <a href="year3.html">Year 3</a>
+    <a href="year4.html">Year 4</a>
+    <a href="year5.html">Year 5</a>
+    <a href="year6.html">Year 6</a>
+    <a href="year7.html">Year 7</a>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Year 1 — Getting to Know You 💑 (2018-2019)</h1>
+    </header>
+
+    <section class="summary">
+      <h2>Year 1:</h2>
+      <p>
+        Our first year together was filled with discovery — new experiences, new places, and learning all the little things that make us *us*. From spontaneous dates to late-night conversations, every moment felt magical.
+      </p>
+    </section>
+	
+	<div class="gallery">
+	<h3>Memories</h3>
+		<div class="photo">
+			<img src="images/year1/1.JPG" alt="Photo 1">
+			<p class="photo-date">January 13, 2019</p>
+		</div>
+		<div class="photo">
+			<img src="images/year1/2.PNG" alt="Photo 2">
+			<p class="photo-date">January 20, 2019</p>
+		</div>
+		<div class="photo">
+			<img src="images/year1/5.PNG" alt="Photo 1">
+			<p class="photo-date">April 21, 2019</p>
+		</div>
+		<div class="photo">
+			<img src="images/year1/4.JPG" alt="Photo 1">
+			<p class="photo-date">May 25, 2019</p>
+		</div>
+		<div class="photo">
+			<img src="images/year1/3.JPEG" alt="Photo 3">
+			<p class="photo-date">May 31, 2019</p>
+		</div>
+	</div>
+
+    <div id="heartbeat-timer">
+      <div class="heart">❤️</div>
+      <p id="reveal-note">Click the button to see how long our hearts have been beating together 💖</p>
+      <button id="reveal-btn">Reveal Time</button>
+      <p id="time-since" style="display: none;">Loving you since forever...</p>
+    </div>
+	<footer>
+      <p>With every heartbeat, I fall for you all over again. — Corey <span style="color: red;">❤️</span></p>
+    </footer>
+  </div>
+  <script src="scripts/base.js"></script>
+  <script>
+    const heart = document.querySelector('.heart');
+    const timeDisplay = document.getElementById('time-since');
+    const revealBtn = document.getElementById('reveal-btn');
+    const revealNote = document.getElementById('reveal-note');
+    const startDate = new Date('June 10, 2018 12:00:00'); // Noon
+
+    function updateTime() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timeDisplay.textContent = `Together for: ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds ❤️`;
+
+      heart.style.transform = 'scale(1.2)';
+      setTimeout(() => heart.style.transform = 'scale(1)', 200);
+    }
+
+    let intervalStarted = false;
+
+    revealBtn.addEventListener('click', () => {
+      if (!intervalStarted) {
+        updateTime();
+        timeDisplay.style.display = 'block';
+        revealBtn.style.display = 'none';
+        revealNote.style.display = 'none';
+        setInterval(updateTime, 1000);
+        intervalStarted = true;
+      }
+	  markAchievementComplete('year1');
+    });
+  </script>
+</body>
+</html>

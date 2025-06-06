@@ -1,0 +1,69 @@
+$(document).ready(function () {
+  const cards = $(".card");
+  let firstCard = null;
+  let secondCard = null;
+  let lockBoard = false;
+  let matchedPairs = 0;
+  const totalPairs = 10;
+
+  // Shuffle the cards using Fisher-Yates shuffle
+  const shuffled = cards.toArray().sort(() => 0.5 - Math.random());
+  $(".game-board").empty().append(shuffled);
+
+  // Set up flipping logic
+  cards.each(function () {
+    const img = $(this).find("img").clone();
+    $(this).html(`
+      <div class="card-inner">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+    `);
+    $(this).find(".card-back").append(img);
+  });
+
+  $(".card").on("click", function () {
+    if (lockBoard || $(this).hasClass("flipped")) return;
+
+    $(this).addClass("flipped");
+
+    if (!firstCard) {
+      firstCard = $(this);
+      return;
+    }
+
+    secondCard = $(this);
+    lockBoard = true;
+
+    const isMatch = firstCard.data("name") === secondCard.data("name");
+
+    if (isMatch) {
+      firstCard.off("click");
+      secondCard.off("click");
+      matchedPairs++;
+
+      // Check for win
+      if (matchedPairs === totalPairs) {
+        setTimeout(() => {
+          alert("🎉 You won! Every memory is a perfect match. Just like us! ❤️ Year 2 Achievment Awarded!" );
+		  if (typeof markAchievementComplete === 'function') {
+                markAchievementComplete('year2');
+              }
+        }, 500);
+      }
+
+      resetBoard();
+    } else {
+      setTimeout(() => {
+        firstCard.removeClass("flipped");
+        secondCard.removeClass("flipped");
+        resetBoard();
+      }, 1000);
+    }
+  });
+
+  function resetBoard() {
+    [firstCard, secondCard] = [null, null];
+    lockBoard = false;
+  }
+});

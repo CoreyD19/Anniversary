@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aliyana & Corey — 7 Years</title>
+  <link rel="stylesheet" href="styles/base.css" />
+  <style>
+    header h1 {
+      text-align: center;
+	font-size: 2.5rem;
+	color: #ffacd2;
+	margin-bottom: 1.5rem;
+    }
+
+    /* Our Date section styles */
+    #our-date {
+      background: #2a2a2a;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 10px rgba(255, 110, 199, 0.3);
+      color: #f3c1e0;
+    }
+
+    #our-date h2 {
+      color: #ff6ec7;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    #our-date .intro-note {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #ffdaec;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .fact-card {
+      background: #333;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(255, 110, 199, 0.4);
+      padding: 1rem 1.25rem;
+      flex: 1 1 280px;
+      max-width: 300px;
+      color: #ffb7dd;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .fact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(255, 110, 199, 0.6);
+    }
+
+    .fact-card h3 {
+      margin-top: 0;
+      color: #ff6ec7;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .fact-card ul {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+
+    .fact-card p {
+      margin: 0;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="year1.html">Year 1</a>
+    <a href="year2.html">Year 2</a>
+    <a href="year3.html">Year 3</a>
+    <a href="year4.html">Year 4</a>
+    <a href="year5.html">Year 5</a>
+    <a href="year6.html">Year 6</a>
+    <a href="year7.html">Year 7</a>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Happy 7 Years, Aliyana ❤️</h1>
+    </header>
+
+	<section class="message">
+      <h2>Dear Aliyana,</h2>
+      <p>
+        Every moment with you has been a blessing. Seven years of laughter, late-night talks,
+        shared dreams, and so much love. This page is just a small reminder of how much you mean to me.
+      </p>
+    </section>
+
+    <section id="our-date">
+      <h2>Our Date: June 10, 2018</h2>
+      <p class="intro-note">
+        While we were starting to fall in love, here’s what else the world was up to on that very same day.
+      </p>
+      <div class="cards-container">
+        <div class="fact-card">
+          <h3>Famous Birthdays</h3>
+          <ul>
+            <li>Judy Garland</li>
+            <li>Sasha Obama</li>
+            <li>Prince Philip</li>
+          </ul>
+        </div>
+        <div class="fact-card">
+          <h3>Moon Phase</h3>
+          <p>
+            Waning Crescent — a gentle and reflective phase, perfect for nurturing something intimate and lasting. Just like our relationship, it started quietly, but with deep emotional energy and potential.
+          </p>
+        </div>
+        <div class="fact-card">
+          <h3>Weather</h3>
+          <p>
+            In West Chester, Ohio, the high was 81°F and the low was 64°F. The day began clear and foggy, turned sunny by afternoon, and brought light rain by evening — peaceful, cozy, and full of warmth.
+          </p>
+        </div>
+        <div class="fact-card">
+          <h3>Horoscope</h3>
+          <p>
+            Taurus Moon energy grounded us in sincerity, while surprise, passion, and intensity stirred through the skies. Just like that day, our love sparked with both steadiness and fire — a perfect start.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="playlist">
+      <h2>🎶 Our Songs</h2>
+      <p>Here's a playlist of the songs that make me think of you — always.</p>
+      <iframe src="YOUR_SPOTIFY_PLAYLIST_LINK" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </section>
+	
+	<section class="photos">
+      <h2>Our Journey</h2>
+      <p>
+        Each year we’ve shared together has its own beautiful story — full of laughter, growth, and unforgettable moments. 
+        Click through the years in the navigation bar above to revisit the memories we’ve made from Year 1 to Year 7. 
+        This is our journey, one chapter at a time. 💖
+      </p>
+		 
+		<div class="achievement-hunt">
+			<h3>✨ The Love Quest: Achievement Hunt ❤️</h3>
+				<p>
+					Hidden in each year's page is a special challenge — complete it and you'll unlock an achievement!  
+					When all 7 are found... a secret surprise awaits at the end of our love story. 💌  
+					Let’s see how many memories you’ve unlocked so far:
+				</p>
+			<p class="achievement-counter">Achievements Unlocked: <span id="achievement-count">0</span> / 7 💘</p>
+		</div>
+		<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const achievements = JSON.parse(localStorage.getItem('loveAchievements')) || [];
+    document.getElementById('achievement-count').textContent = achievements.length;
+  });
+</script>
+
+    </section>
+    <footer>
+      <p>Forever (+3 days) yours, Corey <span style="color: red;">❤️</span></p>
+    </footer>
+  </div>
+
+  <script src="scripts/base.js"></script>
+</body>
+</html>

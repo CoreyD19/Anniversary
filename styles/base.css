@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.navbar {
+  background-color: #2c2c2c;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  color: #ffcce6;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: #ffffff;
+  text-shadow: 0 0 5px #ff7eb9;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+#our-date {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(255, 110, 199, 0.3);
+}
+
+#our-date h2 {
+  color: #ff6ec7;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.fact-card {
+  background: #333;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(255, 110, 199, 0.4);
+  padding: 1rem 1.25rem;
+  flex: 1 1 280px;
+  max-width: 300px;
+  color: #f3c1e0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.fact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(255, 110, 199, 0.6);
+}
+
+.fact-card h3 {
+  margin-top: 0;
+  color: #ff6ec7;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.fact-card ul {
+  padding-left: 1.2rem;
+  margin: 0;
+  color: #ffb7dd;
+}
+
+.fact-card p {
+  margin: 0;
+  line-height: 1.4;
+  color: #ffb7dd;
+}
+
+footer {
+  background: #222;
+  text-align: center;
+  padding: 1rem 0;
+  color: #ff6ec7;
+  font-style: italic;
+  margin-top: 3rem;
+  border-top: 1px solid #ff6ec7;
+}
+.achievement-hunt {
+  background-color: #292929;
+  color: #ffcce6;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 110, 199, 0.3);
+}
+
+.achievement-hunt h3 {
+  color: #ffb6e6;
+  margin-bottom: 0.5rem;
+}
+
+.achievement-counter {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffacd2;
+}

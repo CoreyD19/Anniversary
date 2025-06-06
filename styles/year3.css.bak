@@ -1,0 +1,82 @@
+/* year3.css */
+@import url('year1.css');
+/*@import url('year2.css'); */
+
+/* === Quiz Specific Styles === */
+.quiz {
+  background-color: #292929;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 110, 199, 0.2);
+  margin-bottom: 2rem;
+}
+
+.quiz h2 {
+  color: #ffb6e6;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.quiz p {
+  color: #ffcce6;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#quiz-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.question p {
+  font-weight: bold;
+  color: #ffeaf4;
+}
+
+.question label {
+  display: block;
+  margin-left: 1rem;
+  margin-top: 0.25rem;
+  color: #ffcce6;
+}
+
+button[type="submit"] {
+  background-color: #ff7eb9;
+  color: #1c1c1c;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #ffacd2;
+}
+
+#quiz-result {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffeaf4;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.gallery img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(255, 110, 199, 0.3);
+}

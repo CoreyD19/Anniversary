@@ -1,0 +1,55 @@
+
+const correctAnswers = {
+  q1: 'c',
+  q2: 'a',
+  q3: 'b',
+  q4: 'c',
+  q5: 'a',
+  q6: 'c',
+  q7: 'a',
+  q8: 'b',
+  q9: 'a',
+  q10: 'b'
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('quiz-form');
+  const result = document.getElementById('quiz-result');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let score = 0;
+    Object.keys(correctAnswers).forEach(q => {
+      const selected = form.elements[q].value;
+      if (selected === correctAnswers[q]) {
+        score++;
+      }
+    });
+
+   if (score === 10) {
+  result.textContent = "Perfect score! ✨ You earned the Year 3 achievement!";
+  result.style.color = "#7fffaf";
+  localStorage.setItem('year3Complete', 'true');
+  updateAchievement(3); // ✅ This was missing
+  checkAllAchievements();
+} else {
+  result.textContent = `You got ${score}/10. Try again to unlock the achievement!`;
+  result.style.color = "#ffcce6";
+}
+  });
+});
+
+function checkAllAchievements() {
+  let count = 0;
+  for (let i = 1; i <= 7; i++) {
+    if (localStorage.getItem(`year${i}Complete`) === 'true') {
+      count++;
+    }
+  }
+
+  if (count === 7 && !localStorage.getItem('secretUnlocked')) {
+    localStorage.setItem('secretUnlocked', 'true');
+    window.open('special.html', '_blank');
+  }
+}

@@ -1,0 +1,30 @@
+// === base.js ===
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.fact-card');
+  cards.forEach((card, i) => {
+    card.style.opacity = 0;
+    card.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      card.style.opacity = 1;
+      card.style.transform = 'translateY(0)';
+    }, i * 200);
+  });
+
+  // === Achievement Tracker ===
+  const completedYears = JSON.parse(localStorage.getItem('completedYears') || '[]');
+
+  function checkUnlock() {
+    if (completedYears.length >= 7) {
+      window.open('secret.html', '_blank');
+    }
+  }
+
+  window.markYearComplete = (year) => {
+    if (!completedYears.includes(year)) {
+      completedYears.push(year);
+      localStorage.setItem('completedYears', JSON.stringify(completedYears));
+      checkUnlock();
+    }
+  };
+});

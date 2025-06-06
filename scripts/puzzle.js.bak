@@ -1,0 +1,138 @@
+document.addEventListener('DOMContentLoaded', () => {
+  let draggingTile = null;
+
+  const container = document.getElementById('puzzle-container');
+  const result = document.getElementById('puzzle-result');
+  const generateBtn = document.getElementById('generatePuzzleBtn');
+
+  generateBtn.addEventListener('click', () => {
+    const selected = document.querySelector('input[name="puzzleChoice"]:checked');
+    if (!selected) {
+      result.textContent = "Please select a photo to use!";
+      result.style.color = "#ff9999";
+      return;
+    }
+
+    const imgSrc = selected.value;
+    container.innerHTML = '';
+    result.textContent = '';
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = 'repeat(4, 100px)';
+    container.style.gridGap = '5px';
+    container.style.justifyContent = 'center';
+
+    const gridSize = 4;
+    const tileCount = gridSize * gridSize;
+    const tileOrder = Array.from({ length: tileCount }, (_, i) => i);
+    const correctOrder = [...tileOrder];
+    tileOrder.sort(() => Math.random() - 0.5);
+
+    tileOrder.forEach(index => {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.dataset.index = index;
+
+      const x = index % gridSize;
+      const y = Math.floor(index / gridSize);
+
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.className = 'tile-img';
+      img.style.objectPosition = `-${x * 100}px -${y * 100}px`;
+
+      tile.appendChild(img);
+      tile.setAttribute('draggable', true);
+      container.appendChild(tile);
+    });
+
+    addDragEvents();
+
+    function addDragEvents() {
+      container.querySelectorAll('.tile').forEach(tile => {
+        tile.addEventListener('dragstart', (e) => {
+          draggingTile = tile;
+          e.dataTransfer.setData("text/plain", "");
+        });
+
+        tile.addEventListener('dragover', e => e.preventDefault());
+
+        tile.addEventListener('drop', () => {
+          if (draggingTile && draggingTile !== tile) {
+            const tempImg = draggingTile.querySelector('img');
+            const targetImg = tile.querySelector('img');
+
+            const tempSrc = tempImg.src;
+            const tempPos = tempImg.style.objectPosition;
+
+            tempImg.src = targetImg.src;
+            tempImg.style.objectPosition = targetImg.style.objectPosition;
+
+            targetImg.src = tempSrc;
+            targetImg.style.objectPosition = tempPos;
+
+            const tempIndex = draggingTile.dataset.index;
+            draggingTile.dataset.index = tile.dataset.index;
+            tile.dataset.index = tempIndex;
+
+            checkPuzzle();
+          }
+        });
+      });
+    }
+
+    function checkPuzzle() {
+      const current = Array.from(container.children).map(el => parseInt(el.dataset.index));
+      if (JSON.stringify(current) === JSON.stringify(correctOrder)) {
+        result.textContent = "🎉 You completed the puzzle and earned the Year 4 achievement!";
+        result.style.color = "#7fffaf";
+        localStorage.setItem('year4Complete', 'true');
+
+        // 🎉 Show full image
+        container.innerHTML = '';
+        container.style.display = 'flex';
+        container.style.flexDirection = 'column';
+        container.style.alignItems = 'center';
+
+        const fullImage = document.createElement('img');
+        fullImage.src = imgSrc;
+        fullImage.alt = "Completed Puzzle";
+        fullImage.style.width = '400px';
+        fullImage.style.height = '400px';
+        fullImage.style.borderRadius = '10px';
+        fullImage.style.boxShadow = '0 4px 20px rgba(255, 110, 199, 0.3)';
+        fullImage.style.marginTop = '1rem';
+        container.appendChild(fullImage);
+
+        // 🎊 Confetti time!
+        launchConfetti();
+      }
+    }
+
+    function launchConfetti() {
+      const duration = 3000;
+      const end = Date.now() + duration;
+      const colors = ['#ff85d0', '#ffb6e6', '#ffcce6', '#ffffff'];
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 70,
+          origin: { x: 0 },
+          colors
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 70,
+          origin: { x: 1 },
+          colors
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+  });
+});

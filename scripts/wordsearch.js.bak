@@ -1,0 +1,109 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const wordListKey = 'year5Words';
+  const input = document.getElementById('newWordInput');
+  const addBtn = document.getElementById('addWordBtn');
+  const generateBtn = document.getElementById('generateWordSearchBtn');
+  const grid = document.getElementById('word-search-grid');
+  const wordDisplay = document.getElementById('word-list-display');
+
+  // Default words
+  let words = JSON.parse(localStorage.getItem(wordListKey)) || [
+    'growth', 'laugh', 'hug', 'dream', 'support',
+    'peace', 'goal', 'smile', 'team', 'strong'
+  ];
+
+  addBtn.addEventListener('click', () => {
+    const word = input.value.trim().toLowerCase();
+    if (word && !words.includes(word)) {
+      words.push(word);
+      localStorage.setItem(wordListKey, JSON.stringify(words));
+      input.value = '';
+      alert(`Word "${word}" added!`);
+    }
+  });
+
+  generateBtn.addEventListener('click', () => {
+    const selectedWords = shuffle([...words]).slice(0, 10);
+    createGrid(selectedWords);
+  });
+
+  function shuffle(arr) {
+    return arr.sort(() => Math.random() - 0.5);
+  }
+
+  function createGrid(wordList) {
+    const size = 12;
+    const board = Array.from({ length: size }, () => Array(size).fill(''));
+
+    wordList.forEach(word => placeWord(board, word));
+
+    // Fill empty cells
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        if (!board[y][x]) {
+          board[y][x] = letters[Math.floor(Math.random() * letters.length)];
+        }
+      }
+    }
+
+    grid.innerHTML = '';
+    grid.style.gridTemplateColumns = `repeat(${size}, 30px)`;
+    grid.style.gridGap = '2px';
+
+    board.forEach(row => {
+      row.forEach(cell => {
+        const tile = document.createElement('div');
+        tile.textContent = cell;
+        tile.style.background = '#1e1e1e';
+        tile.style.color = '#ffcce6';
+        tile.style.border = '1px solid #ffb6e6';
+        tile.style.width = '30px';
+        tile.style.height = '30px';
+        tile.style.display = 'flex';
+        tile.style.justifyContent = 'center';
+        tile.style.alignItems = 'center';
+        tile.style.borderRadius = '4px';
+        grid.appendChild(tile);
+      });
+    });
+
+    wordDisplay.textContent = 'Words to find: ' + wordList.map(w => w.toUpperCase()).join(', ');
+    wordDisplay.style.color = '#ffb6e6';
+    wordDisplay.style.marginTop = '1rem';
+  }
+
+  function placeWord(board, word) {
+    const size = board.length;
+    const directions = [
+      [0, 1], [1, 0], [1, 1], [-1, 1]
+    ];
+
+    for (let attempts = 0; attempts < 100; attempts++) {
+      const dir = directions[Math.floor(Math.random() * directions.length)];
+      const row = Math.floor(Math.random() * size);
+      const col = Math.floor(Math.random() * size);
+
+      if (canPlace(board, word, row, col, dir)) {
+        for (let i = 0; i < word.length; i++) {
+          const y = row + i * dir[1];
+          const x = col + i * dir[0];
+          board[y][x] = word[i].toUpperCase();
+        }
+        break;
+      }
+    }
+  }
+
+  function canPlace(board, word, row, col, dir) {
+    const size = board.length;
+    for (let i = 0; i < word.length; i++) {
+      const y = row + i * dir[1];
+      const x = col + i * dir[0];
+      if (x < 0 || x >= size || y < 0 || y >= size || (board[y][x] && board[y][x] !== word[i].toUpperCase())) {
+        return false;
+      }
+    }
+    return true;
+  }
+});

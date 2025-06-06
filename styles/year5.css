@@ -1,0 +1,47 @@
+@import url('base.css');
+@import url('year1.css');
+@import url('year2.css'); 
+@import url('year3.css');
+@import url('year4.css');
+
+
+.summary h2 {
+  color: #ffb6e6;
+}
+
+.photo-date {
+  color: #ffd1dc;
+}
+
+.puzzle-section h2 {
+  color: #ff99cc;
+}
+
+input#newWordInput {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ffb6e6;
+  background-color: #2a2a3b;
+  color: #fff;
+}
+
+button {
+  padding: 6px 12px;
+  margin-left: 6px;
+  border-radius: 6px;
+  background-color: #ff80b3;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #ff6699;
+}
+
+.puzzle-grid {
+  display: grid;
+  justify-content: center;
+  margin-top: 10px;
+}
