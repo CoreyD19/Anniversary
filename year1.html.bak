@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Year 1 — Aliyana & Corey</title>
   <link rel="stylesheet" href="styles/base.css" />
   <link rel="stylesheet" href="styles/year1.css" />
@@ -22,7 +22,7 @@
 
   <div class="container">
     <header>
-      <h1>Year 1 — Getting to Know You 💑 (2018-2019)</h1>
+      <h1>Year 1 — Getting to Know You 💑 (2018–2019)</h1>
     </header>
 
     <section class="summary">
@@ -31,40 +31,45 @@
         Our first year together was filled with lots of discovery — new experiences, new places, and learning all the little things that make us *us*. From late nights texting and calling to discovering our feelings for each other. There is no other person in the world I would rather fall in love with than you, honey.
       </p>
     </section>
-	<h3>Memories</h3>
-	<div class="gallery">
-		<div class="photo">
-			<img src="images/year1/1.JPG" alt="Photo 1">
-			<p class="photo-date">January 13, 2019</p>
-		</div>
-		<div class="photo">
-			<img src="images/year1/2.PNG" alt="Photo 2">
-			<p class="photo-date">January 20, 2019</p>
-		</div>
-		<div class="photo">
-			<img src="images/year1/5.PNG" alt="Photo 1">
-			<p class="photo-date">April 21, 2019</p>
-		</div>
-		<div class="photo">
-			<img src="images/year1/4.JPG" alt="Photo 1">
-			<p class="photo-date">May 25, 2019</p>
-		</div>
-		<div class="photo">
-			<img src="images/year1/3.JPEG" alt="Photo 3">
-			<p class="photo-date">May 31, 2019</p>
-		</div>
-	</div>
+
+    <h3>Memories</h3>
+    <div class="gallery">
+      <div class="photo">
+        <img src="images/year1/1.JPG" alt="Photo 1" />
+        <p class="photo-date">January 13, 2019</p>
+      </div>
+      <div class="photo">
+        <img src="images/year1/2.PNG" alt="Photo 2" />
+        <p class="photo-date">January 20, 2019</p>
+      </div>
+      <div class="photo">
+        <img src="images/year1/5.PNG" alt="Photo 3" />
+        <p class="photo-date">April 21, 2019</p>
+      </div>
+      <div class="photo">
+        <img src="images/year1/4.JPG" alt="Photo 4" />
+        <p class="photo-date">May 25, 2019</p>
+      </div>
+      <div class="photo">
+        <img src="images/year1/3.JPEG" alt="Photo 5" />
+        <p class="photo-date">May 31, 2019</p>
+      </div>
+    </div>
 
     <div id="heartbeat-timer">
       <div class="heart">❤️</div>
-      <p id="reveal-note">Click the button to see how long our hearts have been beating together, and to unlock the year 1 achievment. 💖</p>
+      <p id="reveal-note">
+        Click the button to see how long our hearts have been beating together, and to unlock the Year 1 achievement. 💖
+      </p>
       <button id="reveal-btn">Reveal Time</button>
       <p id="time-since" style="display: none;">Loving you since forever...</p>
     </div>
-	<footer>
+
+    <footer>
       <p>With every heartbeat, I fall for you all over again. — Corey <span style="color: red;">❤️</span></p>
     </footer>
   </div>
+
   <script src="scripts/base.js"></script>
   <script>
     const heart = document.querySelector('.heart');
@@ -85,7 +90,9 @@
       timeDisplay.textContent = `Together for: ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds ❤️`;
 
       heart.style.transform = 'scale(1.2)';
-      setTimeout(() => heart.style.transform = 'scale(1)', 200);
+      setTimeout(() => {
+        heart.style.transform = 'scale(1)';
+      }, 200);
     }
 
     let intervalStarted = false;
@@ -99,7 +106,7 @@
         setInterval(updateTime, 1000);
         intervalStarted = true;
       }
-	  markAchievementComplete('year1');
+      markAchievementComplete('year1');
     });
   </script>
 </body>
