@@ -18,11 +18,43 @@ function markAchievementComplete(year) {
     achievements.push(year);
     localStorage.setItem('loveAchievements', JSON.stringify(achievements));
 
-    // If 7 out of 7 are complete, open surprise
-    if (achievements.length === 7) {
-      setTimeout(() => {
-        window.open('secret.html', '_blank');
-      }, 500);
-    }
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const resetBtn = document.getElementById('resetAchievementsBtn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Are you sure you want to reset all achievements?')) {
+        localStorage.removeItem('loveAchievements');
+        const countDisplay = document.getElementById('achievement-count');
+        if (countDisplay) {
+          countDisplay.textContent = '0';
+        }
+        alert('Achievements have been reset.');
+      }
+    });
+  }
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const achievements = JSON.parse(localStorage.getItem('loveAchievements')) || [];
+  const countDisplay = document.getElementById('achievement-count');
+  const secretBtn = document.getElementById('viewSecretBtn');
+  const secretContainer = document.getElementById('secretSurpriseContainer');
+
+  if (countDisplay) {
+    countDisplay.textContent = achievements.length;
+  }
+
+  if (achievements.length === 7 && secretContainer) {
+    secretContainer.style.display = 'block';
+  }
+
+  if (secretBtn) {
+    secretBtn.addEventListener('click', () => {
+      window.open('secret.html', '_blank');
+    });
+  }
+});
+
+

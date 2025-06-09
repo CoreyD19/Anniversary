@@ -8,12 +8,11 @@
   <style>
     header h1 {
       text-align: center;
-	font-size: 2.5rem;
-	color: #ffacd2;
-	margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+      color: #ffacd2;
+      margin-bottom: 1.5rem;
     }
 
-    /* Our Date section styles */
     #our-date {
       background: #2a2a2a;
       border-radius: 12px;
@@ -77,6 +76,27 @@
       margin: 0;
       line-height: 1.4;
     }
+
+    #resetAchievementsBtn,
+    #viewSecretBtn {
+      padding: 0.6rem 1.2rem;
+      background: #ff6ec7;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .achievement-reset {
+      margin-top: 1rem;
+    }
+
+    #secretSurpriseContainer {
+      display: none;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -96,18 +116,18 @@
       <h1>Happy 7 Years, Aliyana ❤️</h1>
     </header>
 
-	<section class="message">
+    <section class="message">
       <h2>Dear Aliyana,</h2>
       <p>
-        Every moment with you has been a blessing. Seven years of laughter, late-night talks,
-        shared dreams, and so much love. This page is just a small reminder of how much you mean to me.
+        Every moment with you over the past 7 years has helped shape us into who we are today. Through the good times and the bad, we stuck it out together.
+        I am forever grateful that you came into my life. Please enjoy this website I built to commemorate 7 years with the world's funniest, smartest, most caring, and beautiful girl.
       </p>
     </section>
 
     <section id="our-date">
       <h2>Our Date: June 10, 2018</h2>
       <p class="intro-note">
-        While we were starting to fall in love, here’s what else the world was up to on that very same day.
+        While we were starting to fall in love, here’s what else the world was up to on that day.
       </p>
       <div class="cards-container">
         <div class="fact-card">
@@ -121,7 +141,8 @@
         <div class="fact-card">
           <h3>Moon Phase</h3>
           <p>
-            Waning Crescent — a gentle and reflective phase, perfect for nurturing something intimate and lasting. Just like our relationship, it started quietly, but with deep emotional energy and potential.
+            Waning Crescent — a gentle and reflective phase, perfect for nurturing something intimate and lasting.
+            Just like our relationship, it started quietly, but with deep emotional energy and potential.
           </p>
         </div>
         <div class="fact-card">
@@ -133,7 +154,8 @@
         <div class="fact-card">
           <h3>Horoscope</h3>
           <p>
-            Taurus Moon energy grounded us in sincerity, while surprise, passion, and intensity stirred through the skies. Just like that day, our love sparked with both steadiness and fire — a perfect start.
+            Taurus Moon energy grounded us in sincerity, while surprise, passion, and intensity stirred through the skies.
+            Just like that day, our love sparked with both steadiness and fire — a perfect start.
           </p>
         </div>
       </div>
@@ -142,34 +164,43 @@
     <section class="playlist">
       <h2>🎶 Our Songs</h2>
       <p>Here's a playlist of the songs that make me think of you — always.</p>
-      <iframe src="YOUR_SPOTIFY_PLAYLIST_LINK" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    </section>
-	
-	<section class="photos">
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4gNWB1wJvDKFJarcofDZQd?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>    
+	</section>
+
+    <section class="photos">
       <h2>Our Journey</h2>
       <p>
-        Each year we’ve shared together has its own beautiful story — full of laughter, growth, and unforgettable moments. 
-        Click through the years in the navigation bar above to revisit the memories we’ve made from Year 1 to Year 7. 
+        Each year we’ve shared together has its own beautiful story — full of laughter, tears, growth, and unforgettable moments.
+        Click through the years in the navigation bar at the top to revisit the memories we’ve made from Year 1 to Year 7.
         This is our journey, one chapter at a time. 💖
       </p>
-		 
-		<div class="achievement-hunt">
-			<h3>✨ The Love Quest: Achievement Hunt ❤️</h3>
-				<p>
-					Hidden in each year's page is a special challenge — complete it and you'll unlock an achievement!  
-					When all 7 are found... a secret surprise awaits at the end of our love story. 💌  
-					Let’s see how many memories you’ve unlocked so far:
-				</p>
-			<p class="achievement-counter">Achievements Unlocked: <span id="achievement-count">0</span> / 7 💘</p>
-		</div>
-		<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const achievements = JSON.parse(localStorage.getItem('loveAchievements')) || [];
-    document.getElementById('achievement-count').textContent = achievements.length;
-  });
-</script>
 
+      <div class="achievement-hunt">
+        <h3>✨ The Love Quest: Achievement Hunt ❤️</h3>
+        <p>
+          Hidden in each year's page is a special challenge — complete it and you'll unlock an achievement!  
+          When all 7 are found... a secret surprise awaits at the end of our love story. 💌  
+          Let’s see how many memories you’ve unlocked so far:
+        </p>
+        <p class="achievement-counter">Achievements Unlocked: <span id="achievement-count">0</span> / 7 💘</p>
+
+        <div class="achievement-reset">
+          <button id="resetAchievementsBtn">🔄 Reset Achievements</button>
+        </div>
+
+        <div id="secretSurpriseContainer">
+          <button id="viewSecretBtn">🎁 View Secret Surprise</button>
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const achievements = JSON.parse(localStorage.getItem('loveAchievements')) || [];
+          document.getElementById('achievement-count').textContent = achievements.length;
+        });
+      </script>
     </section>
+
     <footer>
       <p>Forever (+3 days) yours, Corey <span style="color: red;">❤️</span></p>
     </footer>

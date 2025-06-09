@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(fullImage);
 
         launchConfetti();
+		markAchievementComplete(4);
       }
     }
 

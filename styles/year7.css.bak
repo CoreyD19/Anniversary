@@ -1,0 +1,136 @@
+@import url('base.css');
+@import url('year1.css');
+@import url('year2.css'); 
+@import url('year3.css');
+@import url('year4.css');
+@import url('year5.css');
+@import url('year6.css');
+.bingo-section {
+  background-color: #292929;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 110, 199, 0.2);
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.bingo-section h2 {
+  color: #ffb6e6;
+  margin-bottom: 0.5rem;
+}
+
+.bingo-section p {
+  color: #ffcce6;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.bingo-section button {
+  padding: 0.6rem 1.2rem;
+  background-color: #e38ea0;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.bingo-section button:hover {
+  background-color: #d46c8b;
+}
+
+#bingo-board {
+  border-collapse: collapse;
+  margin: 1rem auto;
+  width: 100%;
+  max-width: 500px;
+}
+
+#bingo-board td {
+  width: 20%;
+  height: 60px;
+  border: 1px solid #ffb6e6;
+  color: #ffcce6;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  background-color: #1e1e1e;
+  transition: background-color 0.3s;
+  cursor: default;
+}
+
+#bingo-board td.marked {
+  background-color: #a4dcbe;
+  color: #000;
+  font-weight: bold;
+}
+
+.achievement-box {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #2e1e3d;
+  color: #ffd700;
+  border: 2px solid #ffd700;
+  border-radius: 12px;
+  font-weight: bold;
+  display: none;
+}
+
+.confetti {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall 3s linear forwards;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+.drawn-prompt {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #ffd1ec;
+  text-align: center;
+}
+.confetti {
+  position: fixed;
+  top: 0;
+  font-size: 24px;
+  animation: fall 3s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(800px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  pointer-events: none;
+  z-index: 9999;
+}

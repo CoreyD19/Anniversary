@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   result.style.color = "#7fffaf";
   localStorage.setItem('year3Complete', 'true');
   markAchievementComplete(3); // ✅ This was missing
-  checkAllAchievements();
 } else {
   result.textContent = `You got ${score}/10. Try again to unlock the achievement!`;
   result.style.color = "#ffcce6";
@@ -40,16 +39,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function checkAllAchievements() {
-  let count = 0;
-  for (let i = 1; i <= 7; i++) {
-    if (localStorage.getItem(`year${i}Complete`) === 'true') {
-      count++;
-    }
-  }
-
-  if (count === 7 && !localStorage.getItem('secretUnlocked')) {
-    localStorage.setItem('secretUnlocked', 'true');
-    window.open('special.html', '_blank');
-  }
-}

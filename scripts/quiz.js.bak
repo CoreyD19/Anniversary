@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   result.textContent = "Perfect score! ✨ You earned the Year 3 achievement!";
   result.style.color = "#7fffaf";
   localStorage.setItem('year3Complete', 'true');
-  updateAchievement(3); // ✅ This was missing
+  markAchievementComplete(3); // ✅ This was missing
   checkAllAchievements();
 } else {
   result.textContent = `You got ${score}/10. Try again to unlock the achievement!`;

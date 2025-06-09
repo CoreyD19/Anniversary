@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Year 4 - Our Journey</title>
+  <title>Year 4 — Aliyana & Corey</title>
   <link rel="stylesheet" href="styles/year4.css" />
 </head>
 <body>
@@ -80,7 +80,9 @@
     </footer>
   </div>
 
-  <script src="scripts/puzzle.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+ <script src="scripts/puzzle.js"></script>
+  <script src="scripts/base.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 </body>
 </html>

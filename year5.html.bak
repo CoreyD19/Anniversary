@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Year 5 - Growing Stronger</title>
+  <title>Year 5 — Aliyana & Corey</title>
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/year5.css">
 </head>
@@ -21,7 +21,7 @@
 
   <div class="container">
     <header>
-      <h1>Year 5 - Growing Stronger (2022-2023)</h1>
+      <h1>Year 5 - Growing Stronger (2022–2023)</h1>
     </header>
 
     <section class="summary">
@@ -37,42 +37,39 @@
       <div class="gallery">
         <div class="photo">
           <img src="images/year5/1.jpg" alt="Photo 1">
-          <p class="photo-date">August 14, 2022</p>
+          <p class="photo-date">July 13, 2022</p>
         </div>
         <div class="photo">
           <img src="images/year5/2.jpg" alt="Photo 2">
-          <p class="photo-date">October 9, 2022</p>
+          <p class="photo-date">September 9, 2022</p>
         </div>
         <div class="photo">
-          <img src="images/year5/3.jpg" alt="Photo 3">
-          <p class="photo-date">December 25, 2022</p>
+          <img src="images/year5/3.png" alt="Photo 3">
+          <p class="photo-date">January 2, 2023</p>
         </div>
         <div class="photo">
-          <img src="images/year5/4.jpg" alt="Photo 4">
-          <p class="photo-date">February 12, 2023</p>
+          <img src="images/year5/4.png" alt="Photo 4">
+          <p class="photo-date">April 17, 2023</p>
         </div>
         <div class="photo">
           <img src="images/year5/5.jpg" alt="Photo 5">
-          <p class="photo-date">May 20, 2023</p>
+          <p class="photo-date">June 10, 2023</p>
         </div>
       </div>
     </section>
 
     <section class="puzzle-section">
       <h2>🔎 Word Search</h2>
-      <p>Find 10 hidden words that remind us of Year 5! Add your own below to make it even more special. 💖</p>
-
-      <div style="text-align: center; margin-bottom: 1rem;">
-        <input type="text" id="newWordInput" placeholder="Add a word..." />
-        <button id="addWordBtn">Add Word</button>
-      </div>
+      <p>Find 10 hidden words that remind us of our love! 💖</p>
 
       <div style="text-align: center; margin-bottom: 1.5rem;">
         <button id="generateWordSearchBtn">Generate Word Search</button>
       </div>
 
       <div id="word-search-grid" class="puzzle-grid"></div>
-      <p id="word-list-display"></p>
+      <div id="word-list-display"></div>
+	  <p id="completion-message" style="text-align: center; font-weight: bold; color: #72d9b0; margin-top: 1rem;"></p>
+
     </section>
 
     <footer>
@@ -80,6 +77,24 @@
     </footer>
   </div>
 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfLm9w9XeSfzYw4UHHse_I_3Or-60TrBE",
+      authDomain: "year5-wordsearch.firebaseapp.com",
+      projectId: "year5-wordsearch",
+      storageBucket: "year5-wordsearch.firebasestorage.app",
+      messagingSenderId: "546935961713",
+      appId: "1:546935961713:web:91d281c7d28ead7841c3d0",
+      measurementId: "G-KDXLQSHVP7"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+	<script src="scripts/base.js"></script>
   <script src="scripts/wordsearch.js"></script>
 </body>
 </html>

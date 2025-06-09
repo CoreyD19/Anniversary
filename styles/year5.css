@@ -4,44 +4,104 @@
 @import url('year3.css');
 @import url('year4.css');
 
-
-.summary h2 {
-  color: #ffb6e6;
-}
-
-.photo-date {
-  color: #ffd1dc;
+.puzzle-section {
+  background-color: #292929;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 110, 199, 0.2);
+  margin-bottom: 2rem;
 }
 
 .puzzle-section h2 {
-  color: #ff99cc;
+  text-align: center;
+  color: #ffb6e6;
+  margin-bottom: 1rem;
 }
 
-input#newWordInput {
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid #ffb6e6;
-  background-color: #2a2a3b;
-  color: #fff;
+.puzzle-section p {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #ffcce6;
 }
 
-button {
-  padding: 6px 12px;
-  margin-left: 6px;
-  border-radius: 6px;
-  background-color: #ff80b3;
+#generateWordSearchBtn {
+  padding: 0.6rem 1.2rem;
+  background-color: #e38ea0;
   border: none;
-  color: #fff;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #ff6699;
+#generateWordSearchBtn:hover {
+  background-color: #d46c8b;
 }
 
 .puzzle-grid {
   display: grid;
+  grid-template-columns: repeat(12, 35px); /* 12 columns with enough space */
+  gap: 4px;
   justify-content: center;
-  margin-top: 10px;
+  margin: 1rem auto;
+}
+
+.puzzle-grid div {
+  width: 35px;
+  height: 35px;
+  background-color: #1e1e1e;
+  color: #ffcce6;
+  border: 1px solid #ffb6e6;
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.puzzle-grid .found {
+  background-color: #a4dcbe;
+  color: #ffffff;
+}
+
+#word-list-display {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-style: italic;
+  color: #4b2e83;
+}
+.word-to-find {
+  display: inline-block;
+  margin: 0 6px;
+  font-weight: bold;
+  color: #ffcce6;
+}
+
+.tile.selected {
+  outline: 2px solid #ffd700;
+  background-color: #444;
+}
+
+.tile.found {
+  background-color: #a4dcbe;
+  color: #fff;
+}
+.confetti {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall 3s linear forwards;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }

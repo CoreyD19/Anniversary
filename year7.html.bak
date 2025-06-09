@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Year 7 — Aliyana & Corey</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/year7.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="year1.html">Year 1</a>
+    <a href="year2.html">Year 2</a>
+    <a href="year3.html">Year 3</a>
+    <a href="year4.html">Year 4</a>
+    <a href="year5.html">Year 5</a>
+    <a href="year6.html">Year 6</a>
+    <a class="active" href="year7.html">Year 7</a>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Year 7 - The Longest Year (2024–2025)</h1>
+    </header>
+
+    <section class="summary">
+      <h2>Year 7:</h2>
+      <p>
+        This year we bloomed. Through milestones big and small, we supported each other and celebrated everything — from lazy Sundays to personal breakthroughs. 
+        Our love has grown deeper roots and brighter petals. 🌸✨
+      </p>
+    </section>
+
+    <section class="photo-gallery">
+      <h3>Memories</h3>
+      <div class="gallery">
+        <div class="photo">
+          <img src="images/year7/1.jpg" alt="Photo 1">
+          <p class="photo-date">August 3, 2024</p>
+        </div>
+        <div class="photo">
+          <img src="images/year7/2.jpg" alt="Photo 2">
+          <p class="photo-date">September 1, 2024</p>
+        </div>
+        <div class="photo">
+          <img src="images/year7/3.png" alt="Photo 3">
+          <p class="photo-date">September 2, 2024</p>
+        </div>
+        <div class="photo">
+          <img src="images/year7/4.jpg" alt="Photo 4">
+          <p class="photo-date">October 12, 2024</p>
+        </div>
+        <div class="photo">
+          <img src="images/year7/5.jpg" alt="Photo 5">
+          <p class="photo-date">May 9, 2025</p>
+        </div>
+      </div>
+    </section>
+	<section class="bingo-section">
+  <h2>Year 7 Bingo</h2>
+  <p>Mark off the things we've done together!</p>
+  <button onclick="generateBingoBoard()">Generate Bingo Board</button>
+  <table id="bingo-board"></table>
+  <button id="drawPromptBtn" onclick="drawPrompt()" style="display: none;">Draw Prompt</button>
+  <p id="drawnPromptDisplay" class="drawn-prompt" style="margin-top: 1rem; font-weight: bold;"></p>
+<div id="bingoWinMessage" style="display:none; font-size: 1.2em; margin-top: 10px; color: green;"></div>
+</section>
+
+<div id="year7-achievement" class="achievement-box" style="display: none;">
+</div>
+
+
+	<script src="scripts/base.js"></script>
+  <script src="scripts/bingo.js"></script>
+    <footer>
+      <p>Our Love is a special game of Bingo, Forever in a row. ❤️ - Corey</p>
+    </footer>
+  </div>
+
+
+</body>
+</html>

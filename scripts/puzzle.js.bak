@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   let draggingTile = null;
+  let draggingIndex = null;
+  let currentOrder = [];
 
   const container = document.getElementById('puzzle-container');
   const result = document.getElementById('puzzle-result');
@@ -17,23 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = '';
     result.textContent = '';
     container.style.display = 'grid';
-    container.style.gridTemplateColumns = 'repeat(4, 100px)';
-    container.style.gridGap = '5px';
-    container.style.justifyContent = 'center';
 
     const gridSize = 4;
-    const tileCount = gridSize * gridSize;
-    const tileOrder = Array.from({ length: tileCount }, (_, i) => i);
-    const correctOrder = [...tileOrder];
-    tileOrder.sort(() => Math.random() - 0.5);
+    const totalTiles = gridSize * gridSize;
+    const correctOrder = Array.from({ length: totalTiles }, (_, i) => i);
+    currentOrder = [...correctOrder].sort(() => Math.random() - 0.5);
 
-    tileOrder.forEach(index => {
+    currentOrder.forEach((tileIndex, i) => {
       const tile = document.createElement('div');
       tile.className = 'tile';
-      tile.dataset.index = index;
+      tile.setAttribute('draggable', true);
+      tile.dataset.position = i;
 
-      const x = index % gridSize;
-      const y = Math.floor(index / gridSize);
+      const x = tileIndex % gridSize;
+      const y = Math.floor(tileIndex / gridSize);
 
       const img = document.createElement('img');
       img.src = imgSrc;
@@ -41,53 +40,52 @@ document.addEventListener('DOMContentLoaded', () => {
       img.style.objectPosition = `-${x * 100}px -${y * 100}px`;
 
       tile.appendChild(img);
-      tile.setAttribute('draggable', true);
       container.appendChild(tile);
     });
 
     addDragEvents();
 
     function addDragEvents() {
-      container.querySelectorAll('.tile').forEach(tile => {
+      const tiles = container.querySelectorAll('.tile');
+      tiles.forEach((tile, index) => {
         tile.addEventListener('dragstart', (e) => {
           draggingTile = tile;
-          e.dataTransfer.setData("text/plain", "");
+          draggingIndex = index;
+          e.dataTransfer.setData('text/plain', '');
         });
 
-        tile.addEventListener('dragover', e => e.preventDefault());
+        tile.addEventListener('dragover', (e) => e.preventDefault());
 
         tile.addEventListener('drop', () => {
           if (draggingTile && draggingTile !== tile) {
-            const tempImg = draggingTile.querySelector('img');
-            const targetImg = tile.querySelector('img');
+            const dropIndex = [...container.children].indexOf(tile);
 
-            const tempSrc = tempImg.src;
-            const tempPos = tempImg.style.objectPosition;
+            // Swap DOM elements
+            const draggedClone = draggingTile.cloneNode(true);
+            const dropClone = tile.cloneNode(true);
 
-            tempImg.src = targetImg.src;
-            tempImg.style.objectPosition = targetImg.style.objectPosition;
+            container.replaceChild(dropClone, draggingTile);
+            container.replaceChild(draggedClone, tile);
 
-            targetImg.src = tempSrc;
-            targetImg.style.objectPosition = tempPos;
+            // Swap in currentOrder
+            [currentOrder[draggingIndex], currentOrder[dropIndex]] =
+              [currentOrder[dropIndex], currentOrder[draggingIndex]];
 
-            const tempIndex = draggingTile.dataset.index;
-            draggingTile.dataset.index = tile.dataset.index;
-            tile.dataset.index = tempIndex;
+            addDragEvents(); // re-bind events to new nodes
 
-            checkPuzzle();
+            checkPuzzle(imgSrc);
           }
         });
       });
     }
 
-    function checkPuzzle() {
-      const current = Array.from(container.children).map(el => parseInt(el.dataset.index));
-      if (JSON.stringify(current) === JSON.stringify(correctOrder)) {
+    function checkPuzzle(imgSrc) {
+      if (JSON.stringify(currentOrder) === JSON.stringify(correctOrder)) {
         result.textContent = "🎉 You completed the puzzle and earned the Year 4 achievement!";
         result.style.color = "#7fffaf";
         localStorage.setItem('year4Complete', 'true');
 
-        // 🎉 Show full image
+        // Show full image
         container.innerHTML = '';
         container.style.display = 'flex';
         container.style.flexDirection = 'column';
@@ -103,8 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
         fullImage.style.marginTop = '1rem';
         container.appendChild(fullImage);
 
-        // 🎊 Confetti time!
         launchConfetti();
+		markAchievementComplete(4)
       }
     }
 

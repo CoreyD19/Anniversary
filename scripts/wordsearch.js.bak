@@ -1,30 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const wordListKey = 'year5Words';
-  const input = document.getElementById('newWordInput');
-  const addBtn = document.getElementById('addWordBtn');
-  const generateBtn = document.getElementById('generateWordSearchBtn');
+ const words = [
+  "living word",
+  "fortnite",
+  "big city stories",
+  "tela",
+  "Reds",
+  "bengals",
+  "lewis capaldi",
+  "big time rush",
+  "anakeesta",
+  "gattlinburg",
+  "paula deans",
+  "otherworld",
+  "gilmore girls",
+  "bridgerton",
+  "endgame",
+  "hamilton",
+  "art museum",
+  "melting pot",
+  "kenwood mall",
+  "color me mine",
+  "clearwater",
+  "destin",
+  "vampire diaries",
+  "pete davidson",
+  "minecraft",
+  "pookie",
+  "milo",
+  "mochi",
+  "finn",
+  "willow",
+  "loki",
+  "homecoming",
+  "zoo",
+  "Niederman farm",
+  "kings island",
+  "top golf",
+  "yellow",
+  "chicago",
+  "pinots palet",
+  "salt air",
+  "the one",
+  "rescue",
+  "bucees",
+  "Flyer Dr",
+  "texas roadhouse",
+  "longhorn",
+  "target",
+  "ross",
+  "tj maxx",
+  "nick and judy",
+  "new girl",
+  "riverdale",
+  "seperate lives",
+  "you",
+  "the flash",
+  "Trader Joes",
+  "Traders World"
+];
+
+
   const grid = document.getElementById('word-search-grid');
   const wordDisplay = document.getElementById('word-list-display');
+  const generateBtn = document.getElementById('generateWordSearchBtn');
 
-  // Default words
-  let words = JSON.parse(localStorage.getItem(wordListKey)) || [
-    'growth', 'laugh', 'hug', 'dream', 'support',
-    'peace', 'goal', 'smile', 'team', 'strong'
-  ];
-
-  addBtn.addEventListener('click', () => {
-    const word = input.value.trim().toLowerCase();
-    if (word && !words.includes(word)) {
-      words.push(word);
-      localStorage.setItem(wordListKey, JSON.stringify(words));
-      input.value = '';
-      alert(`Word "${word}" added!`);
-    }
-  });
+  let selectedTiles = [];
+  let foundWords = new Set();
+  let wordPositions = [];
 
   generateBtn.addEventListener('click', () => {
     const selectedWords = shuffle([...words]).slice(0, 10);
     createGrid(selectedWords);
+    wordDisplay.innerHTML = '';
+    selectedWords.forEach(w => {
+      const item = document.createElement('span');
+      item.textContent = w.toUpperCase();
+      item.classList.add('word-to-find');
+      wordDisplay.appendChild(item);
+    });
   });
 
   function shuffle(arr) {
@@ -32,78 +85,204 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function createGrid(wordList) {
-    const size = 12;
-    const board = Array.from({ length: size }, () => Array(size).fill(''));
+  const size = 20; // Increased board size
+  const board = Array.from({ length: size }, () => Array(size).fill(''));
+  wordPositions = [];
 
-    wordList.forEach(word => placeWord(board, word));
+  wordList.forEach(word => {
+    const clean = word.replace(/\s/g, '').toUpperCase();
+    placeWord(board, clean, word.toUpperCase());
+  });
 
-    // Fill empty cells
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    for (let y = 0; y < size; y++) {
-      for (let x = 0; x < size; x++) {
-        if (!board[y][x]) {
-          board[y][x] = letters[Math.floor(Math.random() * letters.length)];
-        }
-      }
-    }
-
-    grid.innerHTML = '';
-    grid.style.gridTemplateColumns = `repeat(${size}, 30px)`;
-    grid.style.gridGap = '2px';
-
-    board.forEach(row => {
-      row.forEach(cell => {
-        const tile = document.createElement('div');
-        tile.textContent = cell;
-        tile.style.background = '#1e1e1e';
-        tile.style.color = '#ffcce6';
-        tile.style.border = '1px solid #ffb6e6';
-        tile.style.width = '30px';
-        tile.style.height = '30px';
-        tile.style.display = 'flex';
-        tile.style.justifyContent = 'center';
-        tile.style.alignItems = 'center';
-        tile.style.borderRadius = '4px';
-        grid.appendChild(tile);
-      });
-    });
-
-    wordDisplay.textContent = 'Words to find: ' + wordList.map(w => w.toUpperCase()).join(', ');
-    wordDisplay.style.color = '#ffb6e6';
-    wordDisplay.style.marginTop = '1rem';
-  }
-
-  function placeWord(board, word) {
-    const size = board.length;
-    const directions = [
-      [0, 1], [1, 0], [1, 1], [-1, 1]
-    ];
-
-    for (let attempts = 0; attempts < 100; attempts++) {
-      const dir = directions[Math.floor(Math.random() * directions.length)];
-      const row = Math.floor(Math.random() * size);
-      const col = Math.floor(Math.random() * size);
-
-      if (canPlace(board, word, row, col, dir)) {
-        for (let i = 0; i < word.length; i++) {
-          const y = row + i * dir[1];
-          const x = col + i * dir[0];
-          board[y][x] = word[i].toUpperCase();
-        }
-        break;
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      if (!board[y][x]) {
+        board[y][x] = letters[Math.floor(Math.random() * letters.length)];
       }
     }
   }
+
+  grid.innerHTML = '';
+  grid.style.gridTemplateColumns = `repeat(${size}, 35px)`;
+  grid.classList.add('puzzle-grid');
+
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const tile = document.createElement('div');
+      tile.textContent = board[y][x];
+      tile.dataset.x = x;
+      tile.dataset.y = y;
+      tile.classList.add('tile');
+      grid.appendChild(tile);
+    }
+  }
+
+  setupSelectionHandlers();
+}
+
+function placeWord(board, word, original) {
+  const size = board.length;
+  const directions = [
+    [0, 1],    // Down
+    [1, 0],    // Right
+    [0, -1],   // Up
+    [-1, 0],   // Left
+    [1, 1],    // Down-Right
+    [-1, -1],  // Up-Left
+    [1, -1],   // Up-Right
+    [-1, 1]    // Down-Left
+  ];
+
+  let placed = false;
+
+  for (let attempts = 0; attempts < 500; attempts++) {
+    const dir = directions[Math.floor(Math.random() * directions.length)];
+    const row = Math.floor(Math.random() * size);
+    const col = Math.floor(Math.random() * size);
+
+    if (canPlace(board, word, row, col, dir)) {
+      const coords = [];
+      for (let i = 0; i < word.length; i++) {
+        const y = row + i * dir[1];
+        const x = col + i * dir[0];
+        board[y][x] = word[i];
+        coords.push(`${x},${y}`);
+      }
+      wordPositions.push({ word: original, coords });
+      placed = true;
+      break;
+    }
+  }
+
+  if (!placed) {
+    console.warn(`⚠️ Could not place word: "${original}"`);
+  }
+}
 
   function canPlace(board, word, row, col, dir) {
     const size = board.length;
     for (let i = 0; i < word.length; i++) {
       const y = row + i * dir[1];
       const x = col + i * dir[0];
-      if (x < 0 || x >= size || y < 0 || y >= size || (board[y][x] && board[y][x] !== word[i].toUpperCase())) {
+      if (x < 0 || x >= size || y < 0 || y >= size || (board[y][x] && board[y][x] !== word[i])) {
         return false;
       }
     }
     return true;
   }
+
+  function setupSelectionHandlers() {
+    let isMouseDown = false;
+    selectedTiles = [];
+
+    grid.querySelectorAll('.tile').forEach(tile => {
+      tile.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isMouseDown = true;
+        clearHighlights();
+        selectTile(tile);
+      });
+
+      tile.addEventListener('mouseenter', () => {
+        if (isMouseDown) {
+          selectTile(tile);
+        }
+      });
+
+      tile.addEventListener('mouseup', () => {
+        isMouseDown = false;
+        checkSelection();
+      });
+
+      tile.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        clearHighlights();
+        selectTile(tile);
+      });
+
+      tile.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        const elem = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (elem && elem.classList.contains('tile')) {
+          selectTile(elem);
+        }
+      });
+
+      tile.addEventListener('touchend', () => {
+        checkSelection();
+      });
+    });
+
+    document.addEventListener('mouseup', () => isMouseDown = false);
+  }
+
+  function selectTile(tile) {
+    if (!tile.classList.contains('selected')) {
+      tile.classList.add('selected');
+      selectedTiles.push(tile);
+    }
+  }
+
+  function clearHighlights() {
+    selectedTiles.forEach(t => t.classList.remove('selected'));
+    selectedTiles = [];
+  }
+
+  function checkSelection() {
+    const coords = selectedTiles.map(t => `${t.dataset.x},${t.dataset.y}`);
+    const match = wordPositions.find(w => arraysEqual(w.coords, coords));
+    if (match && !foundWords.has(match.word)) {
+      selectedTiles.forEach(t => t.classList.add('found'));
+      foundWords.add(match.word);
+      markWordFound(match.word);
+    }
+    clearHighlights();
+  }
+
+  function arraysEqual(a, b) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
+
+ function markWordFound(word) {
+  const spans = document.querySelectorAll('.word-to-find');
+  spans.forEach(span => {
+    if (span.textContent === word) {
+      span.style.textDecoration = 'line-through';
+      span.style.color = '#a4dcbe';
+    }
+  });
+
+  if (foundWords.size === 10) {
+    triggerConfetti();
+
+     localStorage.setItem('year5Complete', 'true');
+	 markAchievementComplete(5); // ✅ This was missing
+
+    // 🎉 Show achievement message
+    const msg = document.getElementById('completion-message');
+    msg.textContent = "🎉 You found all the words and unlocked the Year 5 achievement!";
+  }
+}
+
+
+  function triggerConfetti() {
+  const emojis = ["🎉", "💖", "🌟", "✨", "🎊", "🥳"];
+  const count = 80;
+
+  for (let i = 0; i < count; i++) {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.fontSize = Math.random() * 10 + 16 + 'px';
+    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 3000);
+  }
+}
 });

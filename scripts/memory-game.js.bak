@@ -44,12 +44,11 @@ $(document).ready(function () {
 
       // Check for win
       if (matchedPairs === totalPairs) {
-        setTimeout(() => {
-          alert("🎉 You won! Every memory is a perfect match. Just like us! ❤️");
-		  if (typeof markAchievementComplete === 'function') {
-                markAchievementComplete('year2');
+         memory-win-message.style.display = 'block';
+		  localStorage.setItem('year2Complete', 'true');
+		markAchievementComplete(2); // ✅ This was missing
               }
-        }, 500);
+ 
       }
 
       resetBoard();

@@ -82,13 +82,13 @@
         <div class="card" data-name="img4">
           <div class="card-inner">
             <div class="card-front"></div>
-            <div class="card-back"><img src="images/year2/img4.JPG" alt="October 4, 2019"></div>
+            <div class="card-back"><img src="images/year2/4.JPG" alt="October 4, 2019"></div>
           </div>
         </div>
         <div class="card" data-name="img4">
           <div class="card-inner">
             <div class="card-front"></div>
-            <div class="card-back"><img src="images/year2/img4.JPG" alt="October 4, 2019"></div>
+            <div class="card-back"><img src="images/year2/4.JPG" alt="October 4, 2019"></div>
           </div>
         </div>
 
@@ -134,42 +134,45 @@
         <div class="card" data-name="img8">
           <div class="card-inner">
             <div class="card-front"></div>
-            <div class="card-back"><img src="images/year2/8.HEIC" alt="December 6, 2019"></div>
+            <div class="card-back"><img src="images/year2/8.JPG" alt="December 6, 2019"></div>
           </div>
         </div>
         <div class="card" data-name="img8">
           <div class="card-inner">
             <div class="card-front"></div>
-            <div class="card-back"><img src="images/year2/8.HEIC" alt="December 6, 2019"></div>
+            <div class="card-back"><img src="images/year2/8.JPG" alt="December 6, 2019"></div>
           </div>
         </div>
 
         <div class="card" data-name="img9">
           <div class="card-inner">
             <div class="card-front"></div>
-            <div class="card-back"><img src="images/year2/9.HEIC" alt="December 20, 2019"></div>
+            <div class="card-back"><img src="images/year2/9.JPG" alt="December 20, 2019"></div>
           </div>
         </div>
         <div class="card" data-name="img9">
           <div class="card-inner">
             <div class="card-front"></div>
-            <div class="card-back"><img src="images/year2/9.HEIC" alt="December 20, 2019"></div>
+            <div class="card-back"><img src="images/year2/9.JPG" alt="December 20, 2019"></div>
           </div>
         </div>
 
         <div class="card" data-name="img10">
           <div class="card-inner">
             <div class="card-front"></div>
-            <div class="card-back"><img src="images/year2/10.PNG" alt="March 6, 2020"></div>
+            <div class="card-back"><img src="images/year2/10.JPG" alt="March 6, 2020"></div>
           </div>
         </div>
         <div class="card" data-name="img10">
           <div class="card-inner">
             <div class="card-front"></div>
-            <div class="card-back"><img src="images/year2/10.PNG" alt="March 6, 2020"></div>
+            <div class="card-back"><img src="images/year2/10.JPG" alt="March 6, 2020"></div>
           </div>
         </div>
       </div>
+	  <p id="memory-win-message" style="display: none; font-weight: bold; margin-top: 1rem; color: #e91e63;">
+  🎉 You won! Every memory is a perfect match. Just like us! ❤️ Year 2 Achievement Awarded!
+</p>
     </section>
 
     <footer>

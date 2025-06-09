@@ -28,12 +28,11 @@
     <section class="summary">
       <h2>Year 1:</h2>
       <p>
-        Our first year together was filled with discovery — new experiences, new places, and learning all the little things that make us *us*. From spontaneous dates to late-night conversations, every moment felt magical.
+        Our first year together was filled with lots of discovery — new experiences, new places, and learning all the little things that make us *us*. From late nights texting and calling to discovering our feelings for each other. There is no other person in the world I would rather fall in love with than you, honey.
       </p>
     </section>
-	
-	<div class="gallery">
 	<h3>Memories</h3>
+	<div class="gallery">
 		<div class="photo">
 			<img src="images/year1/1.JPG" alt="Photo 1">
 			<p class="photo-date">January 13, 2019</p>
@@ -58,7 +57,7 @@
 
     <div id="heartbeat-timer">
       <div class="heart">❤️</div>
-      <p id="reveal-note">Click the button to see how long our hearts have been beating together 💖</p>
+      <p id="reveal-note">Click the button to see how long our hearts have been beating together, and to unlock the year 1 achievment. 💖</p>
       <button id="reveal-btn">Reveal Time</button>
       <p id="time-since" style="display: none;">Loving you since forever...</p>
     </div>

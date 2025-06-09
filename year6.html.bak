@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Year 6 — Aliyana & Corey</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/year6.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="year1.html">Year 1</a>
+    <a href="year2.html">Year 2</a>
+    <a href="year3.html">Year 3</a>
+    <a href="year4.html">Year 4</a>
+    <a href="year5.html">Year 5</a>
+    <a class="active" href="year6.html">Year 6</a>
+    <a href="year7.html">Year 7</a>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Year 6 - Taking the Next Steps (2023–2024)</h1>
+    </header>
+
+    <section class="summary">
+      <h2>Year 6:</h2>
+      <p>
+        This year we bloomed. Through milestones big and small, we supported each other and celebrated everything — from lazy Sundays to personal breakthroughs. 
+        Our love has grown deeper roots and brighter petals. 🌸✨
+      </p>
+    </section>
+
+    <section class="photo-gallery">
+      <h3>Memories</h3>
+      <div class="gallery">
+        <div class="photo">
+          <img src="images/year6/1.jpg" alt="Photo 1">
+          <p class="photo-date">June 24, 2023</p>
+        </div>
+        <div class="photo">
+          <img src="images/year6/2.jpg" alt="Photo 2">
+          <p class="photo-date">July 23, 2023</p>
+        </div>
+        <div class="photo">
+          <img src="images/year6/3.png" alt="Photo 3">
+          <p class="photo-date">November 14, 2023</p>
+        </div>
+        <div class="photo">
+          <img src="images/year6/4.jpg" alt="Photo 4">
+          <p class="photo-date">February 8, 2024</p>
+        </div>
+        <div class="photo">
+          <img src="images/year6/5.png" alt="Photo 5">
+          <p class="photo-date">May 18, 2024</p>
+        </div>
+      </div>
+    </section>
+<section class="madlib-section">
+  <h2>Love Letter Mad Lib</h2>
+  <p>Click the button below to create a custom, silly love letter together 💌</p>
+  <button id="generateMadLibBtn" onclick="startMadLib()">Generate Mad Lib</button>
+  <div id="madlib-output"></div>
+</section>
+
+
+
+    
+	<script src="scripts/base.js"></script>
+  <script src="scripts/madlib.js"></script>
+    <footer>
+      <p>Our love is my favorite mad lib — every blank filled with you. 💘 - Corey</p>
+    </footer>
+  </div>
+
+ 
+  <script src="scripts/wordsearch.js"></script>
+</body>
+</html>

@@ -1,19 +1,20 @@
 $(document).ready(function () {
-  const cards = $(".card");
   let firstCard = null;
   let secondCard = null;
   let lockBoard = false;
   let matchedPairs = 0;
   const totalPairs = 10;
 
-  // Shuffle the cards using Fisher-Yates shuffle
+  const cards = $(".card");
+
+  // Shuffle and reappend
   const shuffled = cards.toArray().sort(() => 0.5 - Math.random());
   $(".game-board").empty().append(shuffled);
 
-  // Set up flipping logic
-  cards.each(function () {
+  // Inject flip structure and set up card backs
+  $(".card").each(function () {
     const img = $(this).find("img").clone();
-    $(this).html(`
+    $(this).empty().append(`
       <div class="card-inner">
         <div class="card-front"></div>
         <div class="card-back"></div>
@@ -22,6 +23,7 @@ $(document).ready(function () {
     $(this).find(".card-back").append(img);
   });
 
+  // Click handler
   $(".card").on("click", function () {
     if (lockBoard || $(this).hasClass("flipped")) return;
 
@@ -42,14 +44,10 @@ $(document).ready(function () {
       secondCard.off("click");
       matchedPairs++;
 
-      // Check for win
       if (matchedPairs === totalPairs) {
-        setTimeout(() => {
-          alert("🎉 You won! Every memory is a perfect match. Just like us! ❤️ Year 2 Achievment Awarded!" );
-		  if (typeof markAchievementComplete === 'function') {
-                markAchievementComplete('year2');
-              }
-        }, 500);
+        $("#memory-win-message").show(); // ✅ Proper jQuery call
+        localStorage.setItem("year2Complete", "true");
+        markAchievementComplete(2);
       }
 
       resetBoard();
