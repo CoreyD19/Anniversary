@@ -35,23 +35,23 @@
       <h3>Memories</h3>
       <div class="gallery">
         <div class="photo">
-          <img src="images/year7/1.jpg" alt="Photo 1">
+          <img src="images/year7/1.JPG" alt="Photo 1">
           <p class="photo-date">August 3, 2024</p>
         </div>
         <div class="photo">
-          <img src="images/year7/2.jpg" alt="Photo 2">
+          <img src="images/year7/2.JPG" alt="Photo 2">
           <p class="photo-date">September 1, 2024</p>
         </div>
         <div class="photo">
-          <img src="images/year7/3.PNG" alt="Photo 3">
+          <img src="images/year7/3.png" alt="Photo 3">
           <p class="photo-date">September 2, 2024</p>
         </div>
         <div class="photo">
-          <img src="images/year7/4.jpg" alt="Photo 4">
+          <img src="images/year7/4.JPG" alt="Photo 4">
           <p class="photo-date">October 12, 2024</p>
         </div>
         <div class="photo">
-          <img src="images/year7/5.jpg" alt="Photo 5">
+          <img src="images/year7/5.JPG" alt="Photo 5">
           <p class="photo-date">May 9, 2025</p>
         </div>
       </div>
