@@ -42,7 +42,7 @@
 
 .puzzle-grid {
   display: grid;
-  grid-template-columns: repeat(12, 35px); /* 12 columns with enough space */
+  grid-template-columns: repeat(12, 35px);
   gap: 4px;
   justify-content: center;
   margin: 1rem auto;
@@ -75,6 +75,7 @@
   font-style: italic;
   color: #4b2e83;
 }
+
 .word-to-find {
   display: inline-block;
   margin: 0 6px;
@@ -91,6 +92,7 @@
   background-color: #a4dcbe;
   color: #fff;
 }
+
 .confetti {
   position: fixed;
   top: -10px;
@@ -103,5 +105,37 @@
   to {
     transform: translateY(100vh) rotate(360deg);
     opacity: 0;
+  }
+}
+
+/* 🌐 Responsive adjustments for mobile */
+@media (max-width: 600px) {
+  .puzzle-section {
+    padding: 1rem;
+  }
+
+  .puzzle-grid {
+    grid-template-columns: repeat(12, 25px);
+    gap: 3px;
+  }
+
+  .puzzle-grid div {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+  }
+
+  .puzzle-section h2 {
+    font-size: 1.4rem;
+  }
+
+  #generateWordSearchBtn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  #word-list-display {
+    font-size: 0.9rem;
   }
 }
