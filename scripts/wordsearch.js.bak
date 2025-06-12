@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('word-search-grid');
   const wordDisplay = document.getElementById('word-list-display');
   const generateBtn = document.getElementById('generateWordSearchBtn');
-  const completionMessage = document.getElementById('completion-message'); // Get completion message element
+  const completionMessage = document.getElementById('completion-message');
 
   let selectedTiles = [];
   let foundWords = new Set();
@@ -123,17 +123,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     grid.innerHTML = '';
-    // Set the CSS variable for the number of columns directly on the grid element
     grid.style.setProperty('--grid-cols-mobile', size); 
-    // The desktop default for grid-template-columns is in CSS.
-    // On mobile, the media query will use --grid-cols-mobile with 1fr.
-    // Ensure the puzzle-grid class is always present for styling
     grid.classList.add('puzzle-grid');
 
     for (let y = 0; y < size; y++) {
       for (let x = 0; x < size; x++) {
         const tile = document.createElement('div');
-        tile.textContent = board[y][x];
+        // --- IMPORTANT CHANGE HERE ---
+        const letterSpan = document.createElement('span');
+        letterSpan.textContent = board[y][x];
+        tile.appendChild(letterSpan); // Append the span to the div
+        // --- END IMPORTANT CHANGE ---
+
         tile.dataset.x = x;
         tile.dataset.y = y;
         tile.classList.add('tile');
@@ -197,10 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setupSelectionHandlers() {
     let isMouseDown = false;
-    selectedTiles = []; // Clear selected tiles when setting up new handlers
+    selectedTiles = [];
 
     grid.querySelectorAll('.tile').forEach(tile => {
-      // Remove any existing listeners to prevent duplicates
+      // Remove any existing listeners to prevent duplicates (important after grid re-creation)
       tile.removeEventListener('mousedown', handleMouseDown);
       tile.removeEventListener('mouseenter', handleMouseEnter);
       tile.removeEventListener('mouseup', handleMouseUp);
@@ -217,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
       tile.addEventListener('touchend', handleTouchEnd);
     });
 
-    // Remove any existing global mouseup listener to prevent duplicates
     document.removeEventListener('mouseup', () => isMouseDown = false);
     document.addEventListener('mouseup', () => isMouseDown = false);
 
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       isMouseDown = true;
       clearHighlights();
-      selectTile(this); // 'this' refers to the tile clicked
+      selectTile(this);
     }
 
     function handleMouseEnter() {
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleTouchStart(e) {
       e.preventDefault();
       clearHighlights();
-      selectTile(this); // 'this' refers to the tile touched
+      selectTile(this);
     }
 
     function handleTouchMove(e) {
@@ -273,15 +273,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function checkSelection() {
     // Sort selectedTiles by their coordinates to ensure consistent order for comparison
     selectedTiles.sort((a, b) => {
-      const coordA = parseInt(a.dataset.y) * 1000 + parseInt(a.dataset.x); // Simple way to sort by y then x
+      const coordA = parseInt(a.dataset.y) * 1000 + parseInt(a.dataset.x);
       const coordB = parseInt(b.dataset.y) * 1000 + parseInt(b.dataset.x);
       return coordA - coordB;
     });
 
     const coords = selectedTiles.map(t => `${t.dataset.x},${t.dataset.y}`);
     
-    // Find a match where either the stored coords exactly match selected,
-    // or the reverse of stored coords exactly match selected (for words placed backwards)
     const match = wordPositions.find(w => 
       arraysEqual(w.coords, coords) || arraysEqual(w.coords.slice().reverse(), coords)
     );
@@ -305,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function markWordFound(word) {
     const spans = document.querySelectorAll('.word-to-find');
     spans.forEach(span => {
-      if (span.textContent === word.toUpperCase()) { // Ensure case match
+      if (span.textContent === word.toUpperCase()) {
         span.style.textDecoration = 'line-through';
         span.style.color = '#a4dcbe';
       }
@@ -315,7 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
       triggerConfetti();
 
       localStorage.setItem('year5Complete', 'true');
-      // Assuming markAchievementComplete is defined in base.js or globally
       if (typeof markAchievementComplete === 'function') {
         markAchievementComplete(5);
       } else {

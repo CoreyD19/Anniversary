@@ -41,22 +41,20 @@
   background-color: #d46c8b;
 }
 
-/* --- Word Search Grid Styles (Desktop First) --- */
+/* --- Word Search Grid Styles (Desktop-first - Original working state) --- */
 .puzzle-grid {
   display: grid;
-  /* Default for desktop: 12 columns, each 35px wide.
-     This will determine the base size of the squares. */
-  grid-template-columns: repeat(12, 35px);
+  grid-template-columns: repeat(12, 35px); /* Desktop fixed 12 columns, 35px each */
   gap: 4px;
   justify-content: center; /* Center the grid on larger screens */
   margin: 1rem auto;
-  overflow-x: hidden; /* Hide horizontal scroll on desktop, will change on mobile */
+  /* NO overflow-x here initially - we'll wrap it in a scrollable div for mobile */
 }
 
 /* Base styles for individual grid cells */
 .puzzle-grid div {
-  /* Set a fixed aspect ratio for desktop, and let the grid itself define width/height */
-  aspect-ratio: 1 / 1; /* Makes the box perfectly square based on its width */
+  width: 35px; /* Back to fixed width for desktop */
+  height: 35px; /* Back to fixed height for desktop */
   background-color: #1e1e1e;
   color: #ffcce6;
   border: 1px solid #ffb6e6;
@@ -66,16 +64,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  box-sizing: border-box; /* Include padding/border in element's total size */
-  user-select: none; /* Prevent text selection */
+  box-sizing: border-box;
+  user-select: none;
 }
 
-/* Style for the letter inside the div (ensure it's not absolutely positioned now) */
+/* Ensure the letter inside the div is centered */
 .puzzle-grid div span {
-    /* No special positioning needed, flexbox on parent handles centering */
-    /* You might want to adjust font-size here for very specific cases if needed */
+    /* No specific styles needed here, parent flexbox handles it */
 }
-
 
 .puzzle-grid .found {
   background-color: #a4dcbe;
@@ -120,34 +116,14 @@
   }
 }
 
-
-/* ---------------------------------------------------- */
-/* RESPONSIVE MOBILE ADJUSTMENTS              */
-/* ---------------------------------------------------- */
-
+/* --- Mobile-Specific Wrapper for Scrolling (New approach) --- */
+/* This will apply to a new div we add in HTML */
 @media (max-width: 768px) {
-  .puzzle-grid {
-    /* On mobile, use --grid-cols-mobile from JS to define the number of columns.
-       Each column takes up an equal fraction, but with a minimum size. */
-    grid-template-columns: repeat(var(--grid-cols-mobile, 12), minmax(28px, 1fr));
-    gap: 1px; /* Very small gap on mobile */
-    justify-content: start; /* Align to start for horizontal scrolling */
-    padding-bottom: 0.5rem; /* Add some bottom padding if it scrolls */
-    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
-    -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
-    padding-left: 5px; /* Small padding inside the grid container itself */
-    padding-right: 5px;
-    box-sizing: border-box; /* Ensure padding is included in the grid's total width */
-    width: 100%; /* Ensure grid takes up full available width */
-  }
-
-  .puzzle-grid div {
-    /* On mobile, let the grid determine the size.
-       aspect-ratio will keep it square. */
-    min-width: 28px; /* Minimum width for readability on mobile */
-    min-height: 28px; /* Minimum height, aspect-ratio will help ensure this */
-    font-size: 0.8rem; /* Smaller font for mobile */
-    padding: 0; /* Remove padding if aspect-ratio is handling size */
+  .word-search-scroll-wrapper {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+    padding-bottom: 10px; /* Space for scrollbar */
+    margin: 0 0.5rem; /* Small side margins so scrollbar doesn't touch screen edge */
   }
 
   /* Adjustments for the puzzle section padding on smaller screens */
@@ -166,17 +142,5 @@
   #word-list-display {
     font-size: 0.9rem;
     padding: 0 0.5rem; /* Ensure words don't overflow */
-  }
-}
-
-/* Specific adjustments for very small screens (e.g., iPhone SE, older Androids) */
-@media (max-width: 360px) { /* Even smaller breakpoint for very narrow phones */
-  .puzzle-grid {
-    grid-template-columns: repeat(var(--grid-cols-mobile, 12), minmax(24px, 1fr)); /* Even smaller min-width */
-  }
-  .puzzle-grid div {
-    min-width: 24px;
-    min-height: 24px;
-    font-size: 0.7rem; /* Even smaller font */
   }
 }
