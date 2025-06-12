@@ -40,17 +40,29 @@
   background-color: #d46c8b;
 }
 
-.puzzle-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 35px); /* 12 columns with enough space */
-  gap: 4px;
-  justify-content: center;
-  margin: 1rem auto;
+/* Wrapper allows horizontal scroll on small screens */
+.puzzle-grid-wrapper {
+  overflow-x: auto;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-bottom: 1rem;
 }
 
+/* Responsive grid layout */
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
+  gap: 4px;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Square, responsive tiles */
 .puzzle-grid div {
-  width: 35px;
-  height: 35px;
+  width: 8vw;
+  max-width: 35px;
+  aspect-ratio: 1 / 1;
   background-color: #1e1e1e;
   color: #ffcce6;
   border: 1px solid #ffb6e6;
@@ -64,6 +76,7 @@
   user-select: none;
 }
 
+/* Found words */
 .puzzle-grid .found {
   background-color: #a4dcbe;
   color: #ffffff;
@@ -75,6 +88,7 @@
   font-style: italic;
   color: #4b2e83;
 }
+
 .word-to-find {
   display: inline-block;
   margin: 0 6px;
@@ -91,6 +105,7 @@
   background-color: #a4dcbe;
   color: #fff;
 }
+
 .confetti {
   position: fixed;
   top: -10px;
@@ -105,5 +120,3 @@
     opacity: 0;
   }
 }
-
-
