@@ -47,8 +47,7 @@
   gap: 4px;
   justify-content: center;
   margin: 1rem auto;
-  /* Ensure overflow is hidden by default on desktop, becomes auto on mobile */
-  overflow-x: hidden;
+  overflow-x: hidden; /* Default to hidden, will be auto for mobile */
 }
 
 .puzzle-grid div {
@@ -116,34 +115,51 @@
 
 @media (max-width: 768px) {
   .puzzle-grid {
-    /* Use a CSS variable for the number of columns, provided by JS.
-       Each column takes up an equal fraction of space. */
     grid-template-columns: repeat(var(--grid-cols-mobile, 12), 1fr);
-    gap: 1px; /* Very small gap on mobile */
-    justify-content: start; /* Align to start for horizontal scrolling */
-    padding-bottom: 0.5rem; /* Add some bottom padding if it scrolls */
+    gap: 2px; /* Slightly increase gap for better visual separation */
+    justify-content: start;
+    padding-bottom: 0.5rem;
     overflow-x: auto; /* Allow horizontal scrolling if content overflows */
     -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+    /* Add some horizontal padding to the grid itself to prevent letters from touching screen edge */
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .puzzle-grid div {
-    /* Let the grid cells size themselves */
-    width: auto;
-    height: auto;
-    /* Explicit min/max height based on aspect ratio, adjusted to font */
-    min-width: 25px; /* Minimum width for readability */
-    min-height: 25px; /* Minimum height to match */
-    padding: 2px; /* Small internal padding for letters */
-    font-size: 0.8rem; /* Smaller font for mobile */
-    line-height: 1; /* Ensure text fits vertically */
+    /* Use padding-top for aspect ratio control */
+    width: 100%; /* Take full width of its grid cell */
+    height: 0; /* Important for padding-top hack */
+    padding-top: 100%; /* Makes height equal to width (1:1 aspect ratio) */
+    position: relative; /* For positioning content inside */
+
+    /* Ensure content is centered within the new aspect-ratio box */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 28px; /* Slightly larger min-width to ensure readability, adjust as needed */
+    min-height: 28px; /* Should ideally be controlled by padding-top, but good as a fallback */
+    font-size: 0.9rem; /* Adjust font size, try 0.9rem or 0.85rem */
+    
+    border: 1px solid #ffb6e6; /* Ensure border is still there */
+    box-sizing: border-box; /* Crucial to include padding/border in the total size */
+  }
+
+  /* Target the text content inside the div to ensure it centers */
+  .puzzle-grid div span { /* You might need to wrap the letter in a span if you want to explicitly style it */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   /* Adjustments for the puzzle section padding on smaller screens */
   .puzzle-section {
-    padding: 1rem;
-    margin-left: 0.5rem; /* Small left/right margin to prevent content touching edges */
-    margin-right: 0.5rem;
-    box-shadow: none; /* Reduce heavy shadows on small screens for performance/simplicity */
+    padding: 1rem 0.5rem; /* Reduced horizontal padding */
+    margin-left: 0; /* Remove fixed margins, let padding handle it */
+    margin-right: 0;
+    box-shadow: none;
   }
 
   /* Smaller button on mobile */
@@ -155,15 +171,15 @@
   #word-list-display {
     font-size: 0.9rem;
     text-align: center;
-    padding: 0 0.5rem; /* Ensure words don't overflow */
+    padding: 0 0.5rem;
   }
 }
 
 /* Specific adjustments for very small screens (e.g., iPhone SE) */
 @media (max-width: 400px) {
   .puzzle-grid div {
-    min-width: 22px;
-    min-height: 22px;
-    font-size: 0.75rem;
+    min-width: 25px; /* Even smaller min-width for very narrow screens */
+    min-height: 25px;
+    font-size: 0.8rem; /* Slightly smaller font */
   }
 }
