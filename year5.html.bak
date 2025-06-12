@@ -79,24 +79,6 @@
     </footer>
   </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-analytics.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAfLm9w9XeSfzYw4UHHse_I_3Or-60TrBE",
-      authDomain: "year5-wordsearch.firebaseapp.com",
-      projectId: "year5-wordsearch",
-      storageBucket: "year5-wordsearch.firebasestorage.app",
-      messagingSenderId: "546935961713",
-      appId: "1:546935961713:web:91d281c7d28ead7841c3d0",
-      measurementId: "G-KDXLQSHVP7"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
-
   <script src="scripts/base.js"></script>
   <script src="scripts/wordsearch.js"></script>
 </body>
