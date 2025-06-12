@@ -1,6 +1,6 @@
 @import url('base.css');
 @import url('year1.css');
-@import url('year2.css'); 
+@import url('year2.css');
 @import url('year3.css');
 @import url('year4.css');
 
@@ -42,10 +42,13 @@
 
 .puzzle-grid {
   display: grid;
-  grid-template-columns: repeat(12, 35px); /* 12 columns with enough space */
+  /* Default for desktop: 12 columns, each 35px */
+  grid-template-columns: repeat(12, 35px);
   gap: 4px;
   justify-content: center;
   margin: 1rem auto;
+  /* Ensure overflow is hidden by default on desktop, becomes auto on mobile */
+  overflow-x: hidden;
 }
 
 .puzzle-grid div {
@@ -105,43 +108,62 @@
     opacity: 0;
   }
 }
-/* Mobile-first adjustments for the word search grid */
+
+
+/* ---------------------------------------------------- */
+/* RESPONSIVE MOBILE ADJUSTMENTS              */
+/* ---------------------------------------------------- */
+
 @media (max-width: 768px) {
   .puzzle-grid {
-    /* Auto-fit columns, allowing them to shrink to fit the available space.
-       minmax(25px, 1fr) means each column will be at least 25px wide,
-       but can grow to fill available space (1fr). */
-    grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
-    gap: 2px; /* Reduce gap for smaller screens */
+    /* Use a CSS variable for the number of columns, provided by JS.
+       Each column takes up an equal fraction of space. */
+    grid-template-columns: repeat(var(--grid-cols-mobile, 12), 1fr);
+    gap: 1px; /* Very small gap on mobile */
+    justify-content: start; /* Align to start for horizontal scrolling */
+    padding-bottom: 0.5rem; /* Add some bottom padding if it scrolls */
+    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+    -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
   }
 
   .puzzle-grid div {
-    /* Make tiles fill available space within their column */
-    width: 100%;
-    height: 100%;
-    font-size: 0.9rem; /* Slightly smaller font for readability */
-    padding: 0; /* Remove any padding that might push content out */
+    /* Let the grid cells size themselves */
+    width: auto;
+    height: auto;
+    /* Explicit min/max height based on aspect ratio, adjusted to font */
+    min-width: 25px; /* Minimum width for readability */
+    min-height: 25px; /* Minimum height to match */
+    padding: 2px; /* Small internal padding for letters */
+    font-size: 0.8rem; /* Smaller font for mobile */
+    line-height: 1; /* Ensure text fits vertically */
   }
 
   /* Adjustments for the puzzle section padding on smaller screens */
   .puzzle-section {
     padding: 1rem;
+    margin-left: 0.5rem; /* Small left/right margin to prevent content touching edges */
+    margin-right: 0.5rem;
+    box-shadow: none; /* Reduce heavy shadows on small screens for performance/simplicity */
   }
 
   /* Smaller button on mobile */
   #generateWordSearchBtn {
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  #word-list-display {
     font-size: 0.9rem;
+    text-align: center;
+    padding: 0 0.5rem; /* Ensure words don't overflow */
   }
 }
 
-@media (max-width: 480px) {
-  .puzzle-grid {
-    /* Even smaller min-width for very small phones */
-    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
-  }
-
+/* Specific adjustments for very small screens (e.g., iPhone SE) */
+@media (max-width: 400px) {
   .puzzle-grid div {
-    font-size: 0.8rem;
+    min-width: 22px;
+    min-height: 22px;
+    font-size: 0.75rem;
   }
 }
