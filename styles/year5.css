@@ -1,6 +1,6 @@
 @import url('base.css');
 @import url('year1.css');
-@import url('year2.css');
+@import url('year2.css'); 
 @import url('year3.css');
 @import url('year4.css');
 
@@ -42,23 +42,19 @@
 
 .puzzle-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 0.4vw;
+  grid-template-columns: repeat(12, 35px); /* 12 columns with enough space */
+  gap: 4px;
   justify-content: center;
-  width: 100%;
-  max-width: 100vw;
-  padding: 0 2vw;
-  box-sizing: border-box;
-  overflow-x: auto;
   margin: 1rem auto;
 }
 
 .puzzle-grid div {
-  aspect-ratio: 1 / 1;
+  width: 35px;
+  height: 35px;
   background-color: #1e1e1e;
   color: #ffcce6;
   border: 1px solid #ffb6e6;
-  font-size: clamp(0.8rem, 2.8vw, 1.1rem);
+  font-size: 1.1rem;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -79,7 +75,6 @@
   font-style: italic;
   color: #4b2e83;
 }
-
 .word-to-find {
   display: inline-block;
   margin: 0 6px;
@@ -96,7 +91,6 @@
   background-color: #a4dcbe;
   color: #fff;
 }
-
 .confetti {
   position: fixed;
   top: -10px;
@@ -112,13 +106,4 @@
   }
 }
 
-/* ✅ Responsive tweaks for small screens */
-@media (max-width: 600px) {
-  .puzzle-grid {
-    gap: 2px;
-  }
 
-  .puzzle-grid div {
-    font-size: clamp(0.6rem, 3.5vw, 1rem);
-  }
-}
