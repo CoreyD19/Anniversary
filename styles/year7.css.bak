@@ -69,16 +69,7 @@
   font-weight: bold;
 }
 
-.achievement-box {
-  margin-top: 2rem;
-  padding: 1rem;
-  background-color: #2e1e3d;
-  color: #ffd700;
-  border: 2px solid #ffd700;
-  border-radius: 12px;
-  font-weight: bold;
-  display: none;
-}
+
 
 .confetti {
   position: fixed;
