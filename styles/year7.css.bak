@@ -5,19 +5,29 @@
 @import url('year4.css');
 @import url('year5.css');
 @import url('year6.css');
+@import url('base.css');
+@import url('year1.css');
+@import url('year2.css'); 
+@import url('year3.css');
+@import url('year4.css');
+@import url('year5.css');
+@import url('year6.css');
+
 .bingo-section {
   background-color: #292929;
-  padding: 2rem;
+  padding: 2rem 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(255, 110, 199, 0.2);
   margin: 2rem auto;
   max-width: 600px;
   text-align: center;
+  width: 90%;
 }
 
 .bingo-section h2 {
   color: #ffb6e6;
   margin-bottom: 0.5rem;
+  font-size: 1.8rem;
 }
 
 .bingo-section p {
@@ -27,7 +37,7 @@
 }
 
 .bingo-section button {
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1rem;
   background-color: #e38ea0;
   border: none;
   color: white;
@@ -47,6 +57,7 @@
   margin: 1rem auto;
   width: 100%;
   max-width: 500px;
+  table-layout: fixed;
 }
 
 #bingo-board td {
@@ -61,6 +72,7 @@
   background-color: #1e1e1e;
   transition: background-color 0.3s;
   cursor: default;
+  word-wrap: break-word;
 }
 
 #bingo-board td.marked {
@@ -69,28 +81,13 @@
   font-weight: bold;
 }
 
-
-
-.confetti {
-  position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: fall 3s linear forwards;
-  z-index: 9999;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
 .drawn-prompt {
   margin-top: 1rem;
   font-size: 1.2rem;
   color: #ffd1ec;
   text-align: center;
 }
+
 .confetti {
   position: fixed;
   top: 0;
@@ -102,16 +99,6 @@
 
 @keyframes fall {
   0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-@keyframes fall {
-  0% {
     transform: translateY(-100px) rotate(0deg);
     opacity: 1;
   }
@@ -121,7 +108,23 @@
   }
 }
 
-.confetti {
-  pointer-events: none;
-  z-index: 9999;
+/* Mobile styles */
+@media screen and (max-width: 600px) {
+  .bingo-section {
+    padding: 1.5rem 0.75rem;
+  }
+
+  #bingo-board td {
+    height: 50px;
+    font-size: 0.75rem;
+    padding: 0.3rem;
+  }
+
+  .bingo-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .drawn-prompt {
+    font-size: 1rem;
+  }
 }
