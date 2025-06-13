@@ -95,15 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function createGrid(wordList) {
-    let size = 20; // Default for larger screens (number of columns/rows)
-
-    // Adjust grid size (number of columns/rows) for smaller screens
-    if (window.innerWidth <= 768) {
-      size = 14; // Smaller grid for tablets/medium phones
-    }
-    if (window.innerWidth <= 400) { // Using 400px to match new CSS breakpoint for very small phones
-      size = 12; // Even smaller grid for small phones
-    }
+    const size = 20; // Revert to fixed 20x20 grid size
 
     const board = Array.from({ length: size }, () => Array(size).fill(''));
     wordPositions = []; // Reset word positions for new grid
@@ -123,17 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     grid.innerHTML = '';
-    grid.style.setProperty('--grid-cols-mobile', size); 
+    // Revert to explicitly setting grid-template-columns with fixed px for desktop
+    grid.style.gridTemplateColumns = `repeat(${size}, 35px)`;
     grid.classList.add('puzzle-grid');
 
     for (let y = 0; y < size; y++) {
       for (let x = 0; x < size; x++) {
         const tile = document.createElement('div');
-        // --- IMPORTANT CHANGE HERE ---
+        // Keep the span wrapper for letters for consistent centering with flexbox
         const letterSpan = document.createElement('span');
         letterSpan.textContent = board[y][x];
-        tile.appendChild(letterSpan); // Append the span to the div
-        // --- END IMPORTANT CHANGE ---
+        tile.appendChild(letterSpan);
 
         tile.dataset.x = x;
         tile.dataset.y = y;
