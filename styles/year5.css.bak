@@ -4,7 +4,7 @@
 @import url('year3.css');
 @import url('year4.css');
 
-/* --- General Puzzle Section Styles --- */
+/* --- General Puzzle Section Styles (UNTOUCHED) --- */
 .puzzle-section {
   background-color: #292929;
   padding: 2rem;
@@ -41,26 +41,26 @@
   background-color: #d46c8b;
 }
 
-/* --- Word Search Grid Styles (Desktop-first - Original working state) --- */
+/* --- Word Search Grid Styles (Desktop-first - This is the version that works on desktop) --- */
 .puzzle-grid {
   display: grid;
-  grid-template-columns: repeat(12, 35px); /* Desktop fixed 12 columns, 35px each */
+  grid-template-columns: repeat(20, 35px); /* Changed from 12 to 20 to match JS size */
   gap: 4px;
-  justify-content: center; /* Center the grid on larger screens */
+  justify-content: center;
   margin: 1rem auto;
-  /* NO overflow-x here initially - we'll wrap it in a scrollable div for mobile */
+  /* No overflow here, the parent 'word-search-scale-container' will handle it on mobile */
 }
 
 /* Base styles for individual grid cells */
 .puzzle-grid div {
-  width: 35px; /* Back to fixed width for desktop */
-  height: 35px; /* Back to fixed height for desktop */
+  width: 35px;
+  height: 35px;
   background-color: #1e1e1e;
   color: #ffcce6;
   border: 1px solid #ffb6e6;
   font-size: 1.1rem;
   font-weight: bold;
-  display: flex; /* Use flexbox for robust centering of content */
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
@@ -68,9 +68,9 @@
   user-select: none;
 }
 
-/* Ensure the letter inside the div is centered */
+/* Ensure the letter inside the div is centered (already working from previous iteration) */
 .puzzle-grid div span {
-    /* No specific styles needed here, parent flexbox handles it */
+    /* Flexbox on parent div handles centering */
 }
 
 .puzzle-grid .found {
@@ -83,7 +83,7 @@
   font-size: 1rem;
   font-style: italic;
   color: #4b2e83;
-  text-align: center; /* Ensure list is centered */
+  text-align: center;
 }
 .word-to-find {
   display: inline-block;
@@ -116,21 +116,68 @@
   }
 }
 
-/* --- Mobile-Specific Wrapper for Scrolling (New approach) --- */
-/* This will apply to a new div we add in HTML */
+/* ---------------------------------------------------- */
+/* RESPONSIVE MOBILE ADJUSTMENTS (THE NEW STRATEGY)   */
+/* ---------------------------------------------------- */
+
+/* Styles for the new scaling wrapper */
+.word-search-scale-container {
+  /* Desktop default: No special scaling, just contain the grid */
+  display: flex;
+  justify-content: center; /* Center the grid on desktop */
+  overflow: visible; /* Default to visible */
+  position: relative; /* Needed for potential positioning of children if scaled */
+}
+
+
 @media (max-width: 768px) {
-  .word-search-scroll-wrapper {
+  .word-search-scale-container {
+    /* On mobile, center the scaled grid and allow scrolling */
+    display: block; /* Change to block to manage overflow correctly */
     overflow-x: auto; /* Enable horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
-    padding-bottom: 10px; /* Space for scrollbar */
-    margin: 0 0.5rem; /* Small side margins so scrollbar doesn't touch screen edge */
+    -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+    padding: 0 0.5rem 10px; /* Add some side padding and bottom for scrollbar */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    width: 100%; /* Ensure it takes up full width */
+  }
+
+  .puzzle-grid {
+    /* These styles apply to the actual grid, but we need to calculate scale */
+    /* We assume the original desktop grid width is 20 columns * 35px/column + (20-1) gaps * 4px/gap */
+    /* Original grid width = (20 * 35) + (19 * 4) = 700 + 76 = 776px */
+    width: 776px; /* Explicitly set the width of the grid to its desktop size */
+    margin: 0; /* Remove auto margins to avoid interference with scaling */
+    justify-content: flex-start; /* Align to start within the scrollable container */
+  }
+
+  /*
+   * Crucial Scaling Logic:
+   * This is where we calculate the scale factor.
+   * You might need to adjust the `max-width` of the media query
+   * or the base width you're scaling from.
+   */
+  .puzzle-grid { /* Apply transform directly to the grid itself, not the wrapper */
+    transform-origin: top left; /* Scale from the top-left corner */
+    /* Calculate scale: (viewport width - container padding) / actual grid width */
+    /* Example: If viewport is 320px and puzzle-section has 0.5rem (8px) padding each side,
+       available width is 320 - 16 = 304px.
+       Scale = 304 / 776 = 0.39 (approx)
+       You can use a value like `calc( (100vw - 1rem) / 776 )` if you want dynamic scaling,
+       but often a fixed percentage is easier to manage.
+    */
+    transform: scale(0.4); /* Start with a fixed scale factor (e.g., 40%) */
+                          /* You'll need to experiment with this value for ideal fit */
+                          /* A common full-size grid (20x20, 35px cells, 4px gap) is ~776px wide.
+                             To fit a 320px screen, you'd need ~0.4 scale. */
+    margin-left: auto; /* Center the scaled grid horizontally if space allows */
+    margin-right: auto;
   }
 
   /* Adjustments for the puzzle section padding on smaller screens */
   .puzzle-section {
-    padding: 1rem 0.5rem; /* Reduced horizontal padding */
-    margin: 1rem 0.5rem; /* Adjusted margins for mobile to prevent touching edges */
-    box-shadow: none; /* Reduce heavy shadows on small screens */
+    padding: 1rem 0; /* No horizontal padding here, wrapper will handle it */
+    margin: 1rem 0; /* No horizontal margin here */
+    box-shadow: none;
   }
 
   /* Smaller button on mobile */
@@ -141,6 +188,13 @@
 
   #word-list-display {
     font-size: 0.9rem;
-    padding: 0 0.5rem; /* Ensure words don't overflow */
+    padding: 0 0.5rem;
+  }
+}
+
+/* Specific adjustments for very small screens (e.g., iPhone SE, older Androids) */
+@media (max-width: 360px) { /* Even smaller breakpoint for very narrow phones */
+  .puzzle-grid {
+    transform: scale(0.4); /* Adjust scale for even smaller screens */
   }
 }

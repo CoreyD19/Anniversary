@@ -165,7 +165,7 @@
        You can use a value like `calc( (100vw - 1rem) / 776 )` if you want dynamic scaling,
        but often a fixed percentage is easier to manage.
     */
-    transform: scale(0.4); /* Start with a fixed scale factor (e.g., 40%) */
+    transform: scale(0.45); /* Start with a fixed scale factor (e.g., 40%) */
                           /* You'll need to experiment with this value for ideal fit */
                           /* A common full-size grid (20x20, 35px cells, 4px gap) is ~776px wide.
                              To fit a 320px screen, you'd need ~0.4 scale. */
@@ -195,6 +195,6 @@
 /* Specific adjustments for very small screens (e.g., iPhone SE, older Androids) */
 @media (max-width: 360px) { /* Even smaller breakpoint for very narrow phones */
   .puzzle-grid {
-    transform: scale(0.35); /* Adjust scale for even smaller screens */
+    transform: scale(0.4); /* Adjust scale for even smaller screens */
   }
 }
